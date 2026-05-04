@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avinya Designers — Minimal Luxury Fashion</title>
+  <title>Avinya Designers — Minimal Luxury Fashion Wear in Tiruppur</title>
+  <meta name="description" content="Discover handcrafted minimal luxury fashion by Sowmiya T. Custom designs, bridal wear, and timeless pieces blending traditional artistry with contemporary elegance.">
+  <meta name="keywords" content="luxury fashion, custom clothing, bridal wear, minimal luxury, designers Tiruppur, handcrafted fashion">
+  <meta name="author" content="Sowmiya T - Avinya Designers">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://avinyadesigners.com/">
+  <meta property="og:title" content="Avinya Designers — Minimal Luxury Fashion">
+  <meta property="og:description" content="Handcrafted fashion where traditional artistry meets contemporary elegance. Explore our custom designs and timeless pieces.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://avinyadesigners.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Avinya Designers — Minimal Luxury Fashion">
+  <meta name="twitter:description" content="Discover handcrafted minimal luxury fashion by Sowmiya T">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -795,6 +808,12 @@
       background: var(--rose-dk) !important;
       transform: scale(1.08) rotate(15deg) !important;
     }
+    /* FAB Active State for Mobile */
+    .fab-wrap.active .fab-sub {
+      opacity: 1 !important;
+      pointer-events: all !important;
+      transform: translateY(0) !important;
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -826,6 +845,14 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
     @media (max-width: 768px) {
+      /* FAB Mobile Adjustments */
+      .fab-wrap { bottom: 1.5rem; right: 1.5rem; gap: 0.5rem; }
+      .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
+      .fab-main { width: 50px; height: 50px; font-size: 1.1rem; }
+      .fab-label { font-size: 0.6rem; padding: 0.25rem 0.6rem; }
+      .fab-sub { display: none !important; }
+      .fab-wrap.active .fab-sub { display: flex !important; }
+
       nav { padding: 1rem 2rem; }
       nav.scrolled { padding: 0.8rem 2rem; }
       .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
@@ -865,12 +892,18 @@
       .testimonials-grid { grid-template-columns: 1fr; }
       .pricing { padding: 4rem 1.5rem; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .contact-strip { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      .contact-strip { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; margin-bottom: 4rem; }
       footer { padding: 3rem 1.5rem 1.5rem; }
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.85rem; }
     }
     @media (max-width: 480px) {
+      /* FAB Extra Small Mobile */
+      .fab-wrap { bottom: 1rem; right: 1rem; }
+      .fab-btn { width: 40px; height: 40px; font-size: 0.9rem; }
+      .fab-main { width: 46px; height: 46px; font-size: 1rem; }
+      .fab-label { font-size: 0.55rem; padding: 0.2rem 0.5rem; }
+
       nav { padding: 0.75rem 1rem; }
       nav.scrolled { padding: 0.6rem 1rem; }
       .logo-main { font-size: 1.1rem; }
@@ -884,15 +917,65 @@
       .stat-val { font-size: 1.2rem; }
       .stat-label { font-size: 0.7rem; }
       .hero-actions { gap: 0.75rem; }
-      .btn-primary, .btn-ghost { font-size: 0.9rem; padding: 0.6rem 1rem; }
-      .services, .about, .portfolio, .process, .testimonials, .pricing, footer { padding: 3rem 1rem !important; }
+      .btn-primary, .btn-ghost { font-size: 0.9rem; padding: 0.6rem 1rem; min-height: 44px; }
+      .services, .about, .portfolio, .process, .testimonials, .pricing, footer { padding: 2.5rem 1rem !important; }
       .section-title { font-size: 1.8rem; }
       h3 { font-size: 1.2rem; }
       p { font-size: 0.9rem; }
       .footer-top { gap: 1.5rem; }
       .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
+      .contact-strip { padding: 2.5rem 1rem !important; gap: 1.5rem; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Avinya Designers",
+    "url": "https://avinyadesigners.com",
+    "logo": "https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=300&h=300&fit=crop",
+    "description": "Minimal luxury fashion designer specializing in handcrafted bridal wear, custom designs, and timeless pieces",
+    "founder": {
+      "@type": "Person",
+      "name": "Sowmiya T"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tiruppur",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "641600",
+      "addressCountry": "IN"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Tiruppur"
+    },
+    "sameAs": [
+      "https://www.instagram.com/avinyadesigners",
+      "https://www.facebook.com/avinyadesigners"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Avinya Designers",
+    "image": "https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&h=600&fit=crop",
+    "description": "Luxury fashion designer in Tiruppur",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tiruppur",
+      "addressRegion": "Tamil Nadu",
+      "addressCountry": "IN"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1000"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -1357,6 +1440,27 @@
     // Mobile nav
     function toggleNav() {
       document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // FAB Touch Handler for Mobile
+    const fabWrap = document.querySelector('.fab-wrap');
+    if (fabWrap) {
+      fabWrap.addEventListener('click', (e) => {
+        if (e.target.closest('.fab-main')) {
+          fabWrap.classList.remove('active');
+        } else if (e.target.closest('.fab-btn')) {
+          fabWrap.classList.remove('active');
+        } else {
+          fabWrap.classList.toggle('active');
+        }
+      });
+      
+      // Close FAB when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!fabWrap.contains(e.target)) {
+          fabWrap.classList.remove('active');
+        }
+      });
     }
 
     // Scroll reveal
