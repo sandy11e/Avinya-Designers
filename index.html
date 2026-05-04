@@ -46,6 +46,7 @@
       color: var(--ink);
       overflow-x: hidden;
     }
+    body.nav-open { overflow: hidden; }
 
     /* ── NAV ── */
     nav {
@@ -216,6 +217,30 @@
       display: block; font-family: var(--ff-display);
       font-size: 1.3rem; font-weight: 400;
       color: var(--ink); letter-spacing: 0; margin-top: 0.2rem;
+    }
+    .hero-spotlight {
+      position: absolute; top: 2rem; left: 2rem;
+      z-index: 3; display: inline-flex; align-items: center; gap: 0.7rem;
+      padding: 0.75rem 1rem; background: rgba(254, 253, 251, 0.86);
+      border: 1px solid rgba(200, 120, 106, 0.16);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(26, 23, 20, 0.08);
+      opacity: 0; animation: fadeUp 0.8s 1.15s var(--ease) forwards;
+    }
+    .hero-spotlight i {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--rose-lt); color: var(--rose);
+      font-size: 0.8rem; flex-shrink: 0;
+    }
+    .hero-spotlight span {
+      display: block; font-size: 0.58rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-60); font-weight: 600;
+    }
+    .hero-spotlight strong {
+      display: block; font-family: var(--ff-display);
+      font-size: 1rem; font-weight: 400; color: var(--ink);
+      letter-spacing: 0.02em; margin-top: 0.1rem;
     }
 
     @keyframes kenBurns {
@@ -695,6 +720,7 @@
       font-family: var(--ff-body); font-size: 0.85rem;
       color: var(--ink); transition: border-color 0.3s, box-shadow 0.3s;
       outline: none; border-radius: 0;
+      appearance: none;
       -webkit-appearance: none;
     }
     .form-field input:focus,
@@ -853,30 +879,82 @@
       .fab-sub { display: none !important; }
       .fab-wrap.active .fab-sub { display: flex !important; }
 
-      nav { padding: 1rem 2rem; }
-      nav.scrolled { padding: 0.8rem 2rem; }
-      .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
-      .logo-main { font-size: 1.3rem; }
-      .logo-sub { font-size: 0.5rem; margin-top: 0; }
+      nav, nav.scrolled {
+        padding: 0.9rem 1.2rem;
+        background: rgba(248, 244, 239, 0.98);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(168, 94, 81, 0.18);
+        box-shadow: 0 8px 24px rgba(26, 23, 20, 0.04);
+      }
+      .nav-logo { flex-direction: row; align-items: center; gap: 0.45rem; }
+      .logo-main { font-size: 1.2rem; letter-spacing: 0.16em; }
+      .logo-sub { font-size: 0.48rem; margin-top: 0; letter-spacing: 0.28em; }
       .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav-hamburger span { width: 20px; height: 1.5px; }
+      .nav-hamburger {
+        display: flex; align-items: center; justify-content: center;
+        width: 44px; height: 44px; border: 1px solid rgba(168, 94, 81, 0.16);
+        border-radius: 999px; background: rgba(254, 253, 251, 0.9);
+      }
+      .nav-hamburger span { width: 18px; height: 1.5px; background: var(--rose-dk); }
       .nav-links.open {
         display: flex; flex-direction: column;
         position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: var(--cream); align-items: center;
-        justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem;
+        background: linear-gradient(180deg, rgba(248,244,239,0.99) 0%, rgba(254,253,251,0.99) 100%);
+        align-items: center; justify-content: flex-start;
+        gap: 1.25rem; z-index: 1100; padding: 5.5rem 1.5rem 2rem;
+        overflow-y: auto;
+        border-top: 1px solid rgba(168, 94, 81, 0.08);
       }
-      .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
+      .nav-links.open li { width: 100%; display: flex; justify-content: center; }
+      .nav-links.open a {
+        width: min(100%, 280px);
+        font-size: 1rem; padding: 0.9rem 1rem; min-height: 44px;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(255,255,255,0.72);
+        border: 1px solid rgba(168, 94, 81, 0.12);
+        border-radius: 999px;
+        box-shadow: 0 6px 18px rgba(26, 23, 20, 0.04);
+      }
+      .nav-links.open .nav-cta {
+        background: var(--rose);
+        border-color: transparent;
+        color: var(--white) !important;
+      }
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { height: 50vw; min-height: 250px; }
-      .hero-right::after { background: linear-gradient(to bottom, var(--cream) 0%, transparent 30%); }
+      .hero-right {
+        height: min(78vw, 420px); min-height: 320px;
+        margin: 0 1.5rem 1.25rem;
+        border-radius: 28px;
+        box-shadow: 0 24px 50px rgba(26, 23, 20, 0.12);
+      }
+      .hero-right img { object-position: center 18%; }
+      .hero-right::after {
+        background: linear-gradient(180deg, rgba(26,23,20,0.18) 0%, rgba(26,23,20,0.02) 32%, rgba(248,244,239,0.22) 100%);
+      }
+      .hero-right::before {
+        content: '';
+        position: absolute; inset: 12px;
+        border-radius: 22px;
+        border: 1px solid rgba(254,253,251,0.55);
+        pointer-events: none;
+        z-index: 2;
+      }
       .hero-left { padding: 5.5rem 1.5rem 2rem; }
       .hero-title { font-size: 2rem; line-height: 1.2; }
       .hero-desc { font-size: 0.85rem; }
       .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
       .hero-actions { gap: 1rem; flex-direction: column; }
       .btn-primary, .btn-ghost { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .hero-tag {
+        bottom: 1rem; right: 1rem;
+        left: 1rem; padding: 0.85rem 1rem;
+        border-left: none; border-radius: 18px;
+        background: rgba(254, 253, 251, 0.88);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 14px 30px rgba(26, 23, 20, 0.12);
+      }
+      .hero-tag strong { font-size: 1.05rem; }
+      .hero-spotlight { top: 1rem; left: 1rem; right: 1rem; justify-content: flex-start; }
       .services-grid { grid-template-columns: 1fr; }
       .about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
       .about-img-accent { display: none; }
@@ -904,12 +982,16 @@
       .fab-main { width: 46px; height: 46px; font-size: 1rem; }
       .fab-label { font-size: 0.55rem; padding: 0.2rem 0.5rem; }
 
-      nav { padding: 0.75rem 1rem; }
-      nav.scrolled { padding: 0.6rem 1rem; }
-      .logo-main { font-size: 1.1rem; }
-      .logo-sub { font-size: 0.45rem; }
-      .nav-hamburger span { width: 18px; }
-      .hero { min-height: auto; padding-top: 3.5rem; }
+      nav, nav.scrolled {
+        padding: 0.7rem 1rem;
+        background: rgba(248, 244, 239, 0.99);
+        border-bottom: 1px solid rgba(168, 94, 81, 0.22);
+      }
+      .logo-main { font-size: 1.05rem; }
+      .logo-sub { font-size: 0.42rem; }
+      .nav-hamburger { width: 42px; height: 42px; }
+      .nav-hamburger span { width: 16px; }
+      .hero { min-height: auto; padding-top: 3.25rem; }
       .hero-left { padding: 4.5rem 1rem 2rem; }
       .hero-title { font-size: 1.5rem; }
       .hero-desc { font-size: 0.8rem; }
@@ -925,6 +1007,22 @@
       .footer-top { gap: 1.5rem; }
       .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
       .contact-strip { padding: 2.5rem 1rem !important; gap: 1.5rem; }
+      .hero-right {
+        height: 72vw; min-height: 300px;
+        margin: 0 1rem 1rem;
+        border-radius: 24px;
+      }
+      .hero-right img { object-position: center 15%; }
+      .hero-tag {
+        left: 0.75rem; right: 0.75rem; bottom: 0.75rem;
+        padding: 0.7rem 0.85rem; border-radius: 16px;
+      }
+      .hero-spotlight {
+        top: 0.75rem; left: 0.75rem; right: 0.75rem;
+        padding: 0.65rem 0.8rem;
+      }
+      .hero-spotlight i { width: 26px; height: 26px; font-size: 0.7rem; }
+      .hero-spotlight strong { font-size: 0.95rem; }
     }
   </style>
   <script type="application/ld+json">
@@ -1025,6 +1123,13 @@
     </div>
     <div class="hero-right">
       <img src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=900&h=1200&fit=crop&crop=top" alt="Avinya Designers">
+      <div class="hero-spotlight">
+        <i class="fas fa-scissors"></i>
+        <div>
+          <span>Custom Atelier</span>
+          <strong>Made for your moment</strong>
+        </div>
+      </div>
       <div class="hero-tag">
         <span>Now designing for</span>
         <strong>Bridal </strong>
@@ -1439,8 +1544,20 @@
 
     // Mobile nav
     function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburger');
+      const isOpen = navLinks.classList.toggle('open');
+      document.body.classList.toggle('nav-open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
     }
+
+    document.querySelectorAll('#navLinks a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.body.classList.remove('nav-open');
+        document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+      });
+    });
 
     // FAB Touch Handler for Mobile
     const fabWrap = document.querySelector('.fab-wrap');
