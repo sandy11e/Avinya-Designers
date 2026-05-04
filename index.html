@@ -898,22 +898,25 @@
       .nav-hamburger span { width: 18px; height: 1.5px; background: var(--rose-dk); }
       .nav-links.open {
         display: flex; flex-direction: column;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(180deg, rgba(248,244,239,0.99) 0%, rgba(254,253,251,0.99) 100%);
-        align-items: center; justify-content: flex-start;
-        gap: 1.25rem; z-index: 1100; padding: 5.5rem 1.5rem 2rem;
+        position: absolute; top: calc(100% + 0.75rem); left: 1rem; right: 1rem;
+        background: rgba(248,244,239,0.98);
+        align-items: stretch; justify-content: flex-start;
+        gap: 0.7rem; z-index: 1100; padding: 0.9rem;
+        border: 1px solid rgba(168, 94, 81, 0.14);
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(26, 23, 20, 0.12);
+        max-height: calc(100vh - 7rem);
         overflow-y: auto;
-        border-top: 1px solid rgba(168, 94, 81, 0.08);
       }
-      .nav-links.open li { width: 100%; display: flex; justify-content: center; }
+      .nav-links.open li { width: 100%; display: flex; }
       .nav-links.open a {
-        width: min(100%, 280px);
-        font-size: 1rem; padding: 0.9rem 1rem; min-height: 44px;
+        width: 100%;
+        font-size: 0.95rem; padding: 0.9rem 1rem; min-height: 44px;
         display: flex; align-items: center; justify-content: center;
-        background: rgba(255,255,255,0.72);
-        border: 1px solid rgba(168, 94, 81, 0.12);
-        border-radius: 999px;
-        box-shadow: 0 6px 18px rgba(26, 23, 20, 0.04);
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(168, 94, 81, 0.10);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(26, 23, 20, 0.03);
       }
       .nav-links.open .nav-cta {
         background: var(--rose);
@@ -991,6 +994,15 @@
       .logo-sub { font-size: 0.42rem; }
       .nav-hamburger { width: 42px; height: 42px; }
       .nav-hamburger span { width: 16px; }
+      .nav-links.open {
+        top: calc(100% + 0.55rem); left: 0.75rem; right: 0.75rem;
+        padding: 0.8rem;
+        border-radius: 16px;
+      }
+      .nav-links.open a {
+        font-size: 0.92rem; padding: 0.85rem 0.95rem;
+        border-radius: 12px;
+      }
       .hero { min-height: auto; padding-top: 3.25rem; }
       .hero-left { padding: 4.5rem 1rem 2rem; }
       .hero-title { font-size: 1.5rem; }
