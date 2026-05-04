@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avinya Designers — Minimal Luxury Fashion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --rose:    #C8786A;
+      --rose-dk: #A85E51;
+      --rose-lt: #EDD5CF;
+      --cream:   #F8F4EF;
+      --sand:    #EDE8E1;
+      --ink:     #1A1714;
+      --ink-60:  #6B6360;
+      --gold:    #C9A86C;
+      --white:   #FEFDFB;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Manrope', sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(248,244,239,0.92);
+      backdrop-filter: blur(16px);
+      padding: 1rem 4rem;
+      border-bottom: 1px solid rgba(200,120,106,0.12);
+    }
+    .nav-logo {
+      display: flex; flex-direction: column; line-height: 1;
+      text-decoration: none;
+    }
+    .logo-main {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 600;
+      letter-spacing: 0.2em; color: var(--rose-dk);
+    }
+    .logo-sub {
+      font-size: 0.6rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--ink-60);
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--ink);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--rose); }
+
+    .nav-cta {
+      background: var(--rose); color: var(--white) !important;
+      padding: 0.6rem 1.4rem; border-radius: 2px;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dk) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    /* hamburger */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; }
+    .nav-hamburger span {
+      width: 22px; height: 1.5px; background: var(--ink);
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 5rem 7rem;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 1.5rem; font-weight: 500;
+      opacity: 0; animation: fadeUp 0.8s 0.3s var(--ease) forwards;
+    }
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3.5rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--ink); letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.9s 0.5s var(--ease) forwards;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--rose);
+      font-weight: 300;
+    }
+    .hero-desc {
+      font-size: 0.9rem; line-height: 1.9;
+      color: var(--ink-60); max-width: 400px;
+      margin-bottom: 3rem; font-weight: 300;
+      opacity: 0; animation: fadeUp 0.9s 0.7s var(--ease) forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1.5rem; align-items: center;
+      opacity: 0; animation: fadeUp 0.9s 0.9s var(--ease) forwards;
+    }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 0.9rem 2.5rem; font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--ff-body); font-weight: 500;
+      border: none; border-radius: 2px;
+      text-decoration: none; display: inline-block;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--rose-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200,120,106,0.3);
+    }
+    .btn-ghost {
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 0.6rem;
+      transition: color 0.3s, gap 0.3s;
+    }
+    .btn-ghost:hover { color: var(--rose); gap: 1rem; }
+    .btn-ghost i { font-size: 0.7rem; }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 3rem; border-top: 1px solid var(--sand);
+      opacity: 0; animation: fadeUp 0.9s 1.1s var(--ease) forwards;
+    }
+    .stat-val {
+      font-family: var(--ff-display);
+      font-size: 2.2rem; font-weight: 300; color: var(--rose);
+    }
+    .stat-label {
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-60);
+      margin-top: 0.2rem; font-weight: 500;
+    }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      opacity: 0; animation: fadeIn 1.2s 0.4s var(--ease) forwards;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      animation: kenBurns 14s ease-in-out infinite alternate;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--cream) 0%, transparent 30%);
+    }
+    /* floating accent tag */
+    .hero-tag {
+      position: absolute; bottom: 3rem; right: 3rem;
+      background: var(--white); padding: 1.2rem 1.5rem;
+      border-left: 3px solid var(--rose);
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-60);
+      z-index: 3; font-weight: 500;
+      opacity: 0; animation: fadeUp 0.8s 1.4s var(--ease) forwards;
+    }
+    .hero-tag strong {
+      display: block; font-family: var(--ff-display);
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--ink); letter-spacing: 0; margin-top: 0.2rem;
+    }
+
+    @keyframes kenBurns {
+      from { transform: scale(1.05) translateX(0); }
+      to   { transform: scale(1.12) translateX(-2%); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--rose); padding: 0.9rem 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex; gap: 0;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--white);
+      padding: 0 2.5rem; opacity: 0.9; font-weight: 500;
+    }
+    .marquee-inner i { color: var(--rose-lt); font-size: 0.5rem; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--ink);
+      line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-line {
+      width: 40px; height: 1px; background: var(--rose);
+      margin: 1.5rem auto 0;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 7rem 7rem;
+      background: var(--white);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--sand);
+      border: 1px solid var(--sand);
+    }
+    .service-item {
+      background: var(--white);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.4s var(--ease);
+    }
+    .service-item::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--rose);
+      transition: width 0.4s var(--ease);
+    }
+    .service-item:hover { background: var(--cream); }
+    .service-item:hover::before { width: 100%; }
+    .service-num {
+      font-family: var(--ff-display);
+      font-size: 3.5rem; font-weight: 300;
+      color: var(--rose-lt); line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .service-item:hover .service-num { color: var(--rose); }
+    .service-name {
+      font-family: var(--ff-display);
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .service-desc {
+      font-size: 0.82rem; color: var(--ink-60);
+      line-height: 1.8; font-weight: 300;
+    }
+    .service-arrow {
+      margin-top: 2rem; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--rose); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 500;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s, gap 0.3s;
+    }
+    .service-item:hover .service-arrow {
+      opacity: 1; transform: translateY(0);
+    }
+    .service-arrow:hover { gap: 0.9rem; }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 8rem 7rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 7rem; align-items: center;
+      background: var(--cream);
+    }
+    .about-media {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; display: block;
+    }
+    .about-img-accent {
+      position: absolute; bottom: -2.5rem; right: -2.5rem;
+      width: 55%; aspect-ratio: 1;
+      object-fit: cover;
+      border: 6px solid var(--cream);
+    }
+    .about-badge {
+      position: absolute; top: 2rem; left: -2rem;
+      background: var(--rose); color: var(--white);
+      width: 90px; height: 90px; border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .about-badge strong {
+      font-family: var(--ff-display);
+      font-size: 1.8rem; font-weight: 300; line-height: 1;
+    }
+    .about-badge span {
+      font-size: 0.55rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 500;
+    }
+    .about-content { padding-right: 1rem; }
+    .about-content .section-header { text-align: left; }
+    .about-content .section-line { margin-left: 0; }
+    .about-bio {
+      font-size: 0.9rem; color: var(--ink-60);
+      line-height: 2; font-weight: 300; margin: 2rem 0;
+    }
+    .about-pillars {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2.5rem 0;
+    }
+    .pillar {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .pillar-icon {
+      width: 36px; height: 36px;
+      background: var(--rose-lt); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose); font-size: 0.8rem; flex-shrink: 0;
+    }
+    .pillar-name {
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--ink); letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 0.2rem;
+    }
+    .pillar-desc { font-size: 0.78rem; color: var(--ink-60); line-height: 1.6; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio {
+      padding: 7rem 7rem;
+      background: var(--white);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .port-item {
+      position: relative; overflow: hidden;
+      background: var(--sand);
+    }
+    .port-item:first-child {
+      grid-row: span 2;
+    }
+    .port-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.7s var(--ease);
+    }
+    .port-item:hover img { transform: scale(1.06); }
+    .port-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,23,20,0.75) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.4s var(--ease);
+      display: flex; align-items: flex-end;
+      padding: 2rem;
+    }
+    .port-item:hover .port-overlay { opacity: 1; }
+    .port-label {
+      color: var(--white);
+    }
+    .port-label h4 {
+      font-family: var(--ff-display);
+      font-size: 1.4rem; font-weight: 300; margin-bottom: 0.3rem;
+    }
+    .port-label p {
+      font-size: 0.72rem; color: rgba(255,255,255,0.7);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .port-cta-wrap {
+      text-align: center; margin-top: 3rem;
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 7rem 7rem;
+      background: var(--ink);
+    }
+    .process .section-title { color: var(--cream); }
+    .process .section-eyebrow { color: var(--rose-lt); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; margin-top: 4rem; position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 28px; left: 10%; right: 10%;
+      height: 1px; background: rgba(200,120,106,0.3);
+    }
+    .process-step {
+      text-align: center; padding: 0 1.5rem;
+      position: relative;
+    }
+    .step-dot {
+      width: 56px; height: 56px;
+      background: var(--rose); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: var(--ff-display); font-size: 1.3rem;
+      font-weight: 400; color: var(--white);
+      position: relative; z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .process-step:hover .step-dot {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 8px rgba(200,120,106,0.2);
+    }
+    .step-title {
+      font-family: var(--ff-display);
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--cream); margin-bottom: 0.7rem;
+    }
+    .step-desc {
+      font-size: 0.78rem; color: rgba(248,244,239,0.5);
+      line-height: 1.7; font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 7rem 7rem;
+      background: var(--cream);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .testi-card {
+      background: var(--white);
+      padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(26,23,20,0.08);
+    }
+    .testi-card::before {
+      content: '\201C';
+      font-family: var(--ff-display);
+      font-size: 6rem; font-weight: 300;
+      color: var(--rose-lt); line-height: 0.8;
+      position: absolute; top: 1.5rem; right: 2rem;
+      transition: color 0.3s;
+    }
+    .testi-card:hover::before { color: var(--rose); opacity: 0.3; }
+    .testi-stars {
+      display: flex; gap: 3px; margin-bottom: 1.5rem;
+    }
+    .testi-stars i { color: var(--gold); font-size: 0.75rem; }
+    .testi-text {
+      font-size: 0.88rem; color: var(--ink-60);
+      line-height: 1.9; font-weight: 300; font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .testi-author {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--rose-lt);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: 1.1rem;
+      color: var(--rose); font-weight: 400;
+    }
+    .testi-name {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--ink); letter-spacing: 0.03em;
+    }
+    .testi-role {
+      font-size: 0.72rem; color: var(--ink-60);
+      margin-top: 1px;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      padding: 7rem 7rem;
+      background: var(--white);
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .price-card {
+      border: 1px solid var(--sand);
+      padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .price-card:hover {
+      border-color: var(--rose);
+      box-shadow: 0 16px 50px rgba(200,120,106,0.12);
+      transform: translateY(-4px);
+    }
+    .price-card.featured {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: white;
+    }
+    .price-card.featured * { color: rgba(255,255,255,0.9) !important; }
+    .price-card.featured h3 { color: white !important; }
+    .price-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: var(--white); color: var(--rose);
+      font-size: 0.6rem; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 0.3rem 0.8rem;
+    }
+    .price-tier {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; font-weight: 600;
+      color: var(--rose); margin-bottom: 1rem;
+    }
+    .price-card.featured .price-tier { color: var(--rose-lt); }
+    .price-name {
+      font-family: var(--ff-display);
+      font-size: 2rem; font-weight: 300;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .price-amount {
+      font-family: var(--ff-display);
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--rose); line-height: 1;
+      margin: 1.5rem 0 0.3rem;
+    }
+    .price-card.featured .price-amount { color: var(--white) !important; }
+    .price-from {
+      font-size: 0.72rem; color: var(--ink-60); margin-bottom: 2rem;
+    }
+    .price-divider {
+      height: 1px; background: var(--sand); margin: 2rem 0;
+    }
+    .price-card.featured .price-divider { background: rgba(255,255,255,0.2); }
+    .price-features { list-style: none; }
+    .price-features li {
+      font-size: 0.82rem; color: var(--ink-60);
+      padding: 0.6rem 0; display: flex;
+      align-items: center; gap: 0.8rem;
+      border-bottom: 1px solid var(--sand);
+      font-weight: 300;
+    }
+    .price-card.featured .price-features li {
+      border-color: rgba(255,255,255,0.15);
+    }
+    .price-features li:last-child { border: none; }
+    .price-features i { color: var(--rose); font-size: 0.65rem; }
+    .price-card.featured .price-features i { color: var(--rose-lt); }
+    .price-cta {
+      margin-top: 2.5rem; width: 100%;
+      padding: 0.9rem; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--ff-body); font-weight: 600;
+      border: 1.5px solid var(--rose); background: transparent;
+      color: var(--rose); transition: background 0.3s, color 0.3s, transform 0.2s;
+      text-decoration: none; display: block; text-align: center;
+    }
+    .price-cta:hover {
+      background: var(--rose); color: var(--white);
+      transform: translateY(-1px);
+    }
+    .price-card.featured .price-cta {
+      background: var(--white); color: var(--rose); border-color: var(--white);
+    }
+    .price-card.featured .price-cta:hover {
+      background: var(--rose-lt);
+    }
+
+    /* ── CONTACT STRIP ── */
+    .contact-strip {
+      padding: 6rem 7rem;
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .contact-left .section-header { text-align: left; }
+    .contact-left .section-line { margin-left: 0; }
+    .contact-tagline {
+      font-size: 0.88rem; color: var(--ink-60);
+      line-height: 1.9; font-weight: 300; margin-top: 1.5rem;
+    }
+    .contact-channels {
+      display: flex; flex-direction: column; gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .channel {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--white);
+      transition: box-shadow 0.3s, transform 0.3s;
+      text-decoration: none; color: inherit;
+    }
+    .channel:hover {
+      box-shadow: 0 8px 24px rgba(26,23,20,0.06);
+      transform: translateX(4px);
+    }
+    .channel-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--rose-lt); color: var(--rose); font-size: 1rem;
+    }
+    .channel-label {
+      font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--ink-60);
+      font-weight: 500; margin-bottom: 0.2rem;
+    }
+    .channel-value {
+      font-size: 0.88rem; font-weight: 500; color: var(--ink);
+    }
+
+    /* form */
+    .contact-form-wrap {
+      background: var(--white);
+      padding: 3rem;
+    }
+    .form-title {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--ink); margin-bottom: 2rem;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-field { margin-bottom: 1.2rem; }
+    .form-field label {
+      display: block; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; color: var(--ink-60); margin-bottom: 0.5rem;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%; padding: 0.8rem 1rem;
+      border: 1px solid var(--sand); background: var(--cream);
+      font-family: var(--ff-body); font-size: 0.85rem;
+      color: var(--ink); transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none; border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(200,120,106,0.08);
+    }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--rose); color: var(--white);
+      border: none; font-family: var(--ff-body);
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover {
+      background: var(--rose-dk); transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 5rem 7rem 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand .logo-main { color: var(--rose); font-size: 1.4rem; }
+    .footer-brand .logo-sub { color: var(--ink-60); }
+    .footer-tagline {
+      font-size: 0.82rem; color: var(--ink-60);
+      line-height: 1.8; font-weight: 300; margin: 1.5rem 0 2rem;
+    }
+    .footer-social {
+      display: flex; gap: 1rem;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-60); font-size: 0.85rem; text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .footer-social a:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+      background: rgba(200,120,106,0.08);
+    }
+    .footer-col h5 {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; font-weight: 600;
+      color: var(--cream); margin-bottom: 1.8rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.9rem; }
+    .footer-col a {
+      font-size: 0.82rem; color: var(--ink-60);
+      text-decoration: none; font-weight: 300;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--rose); }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      align-items: center; padding-top: 2rem;
+      font-size: 0.72rem; color: rgba(107,99,96,0.5);
+    }
+
+    /* ── FLOATING ACTIONS ── */
+    .fab-wrap {
+      position: fixed; bottom: 2rem; right: 2rem;
+      z-index: 500; display: flex; flex-direction: column;
+      align-items: flex-end; gap: 0.7rem;
+    }
+    .fab-sub {
+      display: flex; align-items: center; gap: 0.8rem;
+      opacity: 0; pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .fab-wrap:hover .fab-sub { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .fab-sub:nth-child(2) { transition-delay: 0.05s; }
+    .fab-sub:nth-child(3) { transition-delay: 0.1s; }
+    .fab-sub:nth-child(4) { transition-delay: 0.15s; }
+    .fab-label {
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600;
+      background: var(--ink); color: var(--white);
+      padding: 0.3rem 0.7rem; white-space: nowrap;
+    }
+    .fab-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--white); color: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26,23,20,0.15);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .fab-btn:hover { background: var(--rose-lt); transform: scale(1.08); }
+    .fab-main {
+      width: 54px; height: 54px;
+      background: var(--rose) !important; color: var(--white) !important;
+      font-size: 1.2rem !important;
+      box-shadow: 0 6px 24px rgba(200,120,106,0.4) !important;
+    }
+    .fab-main:hover {
+      background: var(--rose-dk) !important;
+      transform: scale(1.08) rotate(15deg) !important;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.5rem 2.5rem; }
+      nav.scrolled { padding: 1rem 2.5rem; }
+      .hero-left { padding: 7rem 3rem 4rem 4rem; }
+      .services, .portfolio, .about, .testimonials, .pricing, .contact-strip { padding-left: 3rem; padding-right: 3rem; }
+      footer { padding-left: 3rem; padding-right: 3rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 2rem; }
+      nav.scrolled { padding: 0.8rem 2rem; }
+      .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
+      .logo-main { font-size: 1.3rem; }
+      .logo-sub { font-size: 0.5rem; margin-top: 0; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-hamburger span { width: 20px; height: 1.5px; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--cream); align-items: center;
+        justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem;
+      }
+      .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 50vw; min-height: 250px; }
+      .hero-right::after { background: linear-gradient(to bottom, var(--cream) 0%, transparent 30%); }
+      .hero-left { padding: 5.5rem 1.5rem 2rem; }
+      .hero-title { font-size: 2rem; line-height: 1.2; }
+      .hero-desc { font-size: 0.85rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .hero-actions { gap: 1rem; flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      .about-img-accent { display: none; }
+      .about-badge { top: 1rem; left: 1rem; }
+      .portfolio { padding: 4rem 1.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .port-item:first-child { grid-row: span 1; }
+      .port-item { height: 250px; }
+      .process { padding: 4rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .testimonials { padding: 4rem 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .pricing { padding: 4rem 1.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .contact-strip { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      nav { padding: 0.75rem 1rem; }
+      nav.scrolled { padding: 0.6rem 1rem; }
+      .logo-main { font-size: 1.1rem; }
+      .logo-sub { font-size: 0.45rem; }
+      .nav-hamburger span { width: 18px; }
+      .hero { min-height: auto; padding-top: 3.5rem; }
+      .hero-left { padding: 4.5rem 1rem 2rem; }
+      .hero-title { font-size: 1.5rem; }
+      .hero-desc { font-size: 0.8rem; }
+      .hero-stats { gap: 1rem; }
+      .stat-val { font-size: 1.2rem; }
+      .stat-label { font-size: 0.7rem; }
+      .hero-actions { gap: 0.75rem; }
+      .btn-primary, .btn-ghost { font-size: 0.9rem; padding: 0.6rem 1rem; }
+      .services, .about, .portfolio, .process, .testimonials, .pricing, footer { padding: 3rem 1rem !important; }
+      .section-title { font-size: 1.8rem; }
+      h3 { font-size: 1.2rem; }
+      p { font-size: 0.9rem; }
+      .footer-top { gap: 1.5rem; }
+      .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">AVINYA</span>
+      <span class="logo-sub">Designers</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="categories.html">Services</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow"><i class="fas fa-circle" style="font-size:0.4rem;margin-right:0.5rem"></i> Minimal Luxury Fashion — Tiruppur</p>
+      <h1 class="hero-title">We Design What<br>Your <em>Soul</em> Desires</h1>
+      <p class="hero-desc">Handcrafted fashion where traditional artistry meets contemporary elegance. Every piece is a story — yours to wear, yours to own.</p>
+      <div class="hero-actions">
+        <a href="collections.html" class="btn-primary">Explore Collections</a>
+        <a href="about.html" class="btn-ghost">Meet Sowmiya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">1000+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div>
+          <div class="stat-val">10+</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div>
+          <div class="stat-val">4.9★</div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=900&h=1200&fit=crop&crop=top" alt="Avinya Designers">
+      <div class="hero-tag">
+        <span>Now designing for</span>
+        <strong>Bridal </strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
+      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
+      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
+      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
+      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Crafted for Every<br><em>Woman, Every Occasion</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Traditional Designs</h3>
+        <p class="service-desc">Authentic heritage wear with a modern twist. Intricate embroidery, rich fabrics, and timeless patterns for your most special days.</p>
+        <a href="categories.html" class="service-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="service-item reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <h3 class="service-name">Trendy Styles</h3>
+        <p class="service-desc">Contemporary silhouettes that blend comfort with sophistication. Stay ahead with designs made for the modern, confident woman.</p>
+        <a href="categories.html" class="service-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="service-item reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Custom Stitching</h3>
+        <p class="service-desc">Perfectly tailored to your measurements and style. Every stitch considered, every detail intentional — just for you.</p>
+        <a href="categories.html" class="service-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="service-item reveal reveal-delay-3">
+        <div class="service-num">04</div>
+        <h3 class="service-name">Luxury Minimal</h3>
+        <p class="service-desc">Elegant simplicity in premium fabrics. Understated pieces that speak volumes — for the woman who knows less is more.</p>
+        <a href="categories.html" class="service-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-media reveal">
+      <img class="about-img-main" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&h=800&fit=crop&crop=center" alt="Designer Sowmiya T">
+      <img class="about-img-accent" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop" alt="Atelier">
+      <div class="about-badge">
+        <strong>10+</strong>
+        <span>Years of craft</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">The Designer</p>
+        <h2 class="section-title">Sowmiya T —<br><em>Creative Visionary</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="about-bio reveal">With over a decade of mastery in fashion design, Sowmiya T has built Avinya Designers into a sanctuary of minimal luxury. Her philosophy is simple: every garment should make the wearer feel seen, confident, and extraordinary.</p>
+      <div class="about-pillars reveal">
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fas fa-lightbulb"></i></div>
+          <div>
+            <p class="pillar-name">Innovation</p>
+            <p class="pillar-desc">Blending tradition with contemporary design</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fas fa-gem"></i></div>
+          <div>
+            <p class="pillar-name">Quality</p>
+            <p class="pillar-desc">Premium fabrics, impeccable finish</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fas fa-heart"></i></div>
+          <div>
+            <p class="pillar-name">Personalization</p>
+            <p class="pillar-desc">Designed around your unique personality</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><i class="fas fa-leaf"></i></div>
+          <div>
+            <p class="pillar-name">Sustainability</p>
+            <p class="pillar-desc">Ethically sourced, responsibly made</p>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" class="btn-primary reveal">Read My Story</a>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Portfolio</p>
+      <h2 class="section-title">Featured <em>Collections</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="portfolio-grid">
+      <div class="port-item reveal" style="height:520px">
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=900&fit=crop" alt="Bridal">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>Bridal Couture</h4>
+            <p>Timeless elegance for your forever moment</p>
+          </div>
+        </div>
+      </div>
+      <div class="port-item reveal reveal-delay-1" style="height:250px">
+        <img src="https://images.unsplash.com/photo-1606518451065-d3e5fc92d4df?w=500&h=400&fit=crop" alt="Casual">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>Contemporary Casual</h4>
+            <p>Modern comfort, refined</p>
+          </div>
+        </div>
+      </div>
+      <div class="port-item reveal reveal-delay-2" style="height:250px">
+        <img src="https://images.unsplash.com/photo-1591521201021-828d50d54d56?w=500&h=400&fit=crop" alt="Professional">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>Professional Wear</h4>
+            <p>Power dressing, perfected</p>
+          </div>
+        </div>
+      </div>
+      <div class="port-item reveal reveal-delay-1" style="height:250px">
+        <img src="https://images.unsplash.com/photo-1583394838336-acd977479ee7?w=500&h=400&fit=crop" alt="Evening">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>Evening Elegance</h4>
+            <p>Luxurious nights, luminous looks</p>
+          </div>
+        </div>
+      </div>
+      <div class="port-item reveal reveal-delay-2" style="height:250px">
+        <img src="https://images.unsplash.com/photo-1515623572083-0e2a6c1c1c2e?w=500&h=400&fit=crop&crop=center" alt="Festival">
+        <div class="port-overlay">
+          <div class="port-label">
+            <h4>Festival Collection</h4>
+            <p>Vibrant heritage, reimagined</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="port-cta-wrap reveal">
+      <a href="collections.html" class="btn-primary">View All Collections</a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">From <em>Vision</em> to Reality</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">1</div>
+        <h3 class="step-title">Consultation</h3>
+        <p class="step-desc">We meet to understand your vision, style, budget, and occasion.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-dot">2</div>
+        <h3 class="step-title">Design Sketch</h3>
+        <p class="step-desc">Custom sketches crafted around your personality and preferences.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-dot">3</div>
+        <h3 class="step-title">Fabric Selection</h3>
+        <p class="step-desc">Curated premium fabrics selected for your design and skin tone.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-dot">4</div>
+        <h3 class="step-title">Expert Tailoring</h3>
+        <p class="step-desc">Multiple fittings ensure flawless fit and exceptional finish.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-dot">5</div>
+        <h3 class="step-title">Delivery</h3>
+        <p class="step-desc">Your perfect design — ready to wear and make you unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Client Stories</p>
+      <h2 class="section-title">Words from Our <em>Happy Clients</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Sowmiya understood my vision completely and created something beyond my expectations. The quality is impeccable. I received so many compliments on my wedding day!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <p class="testi-name">Anjali M.</p>
+            <p class="testi-role">Bride · December 2023</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"The custom stitching service is incredible. My clothes fit perfectly now! The consultation process was smooth and Sowmiya listened to every single detail."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <p class="testi-name">Priya K.</p>
+            <p class="testi-role">Professional · November 2023</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Affordable luxury at its finest. Avinya Designers proves you don't need to spend a fortune to look absolutely fabulous. The minimal aesthetic is so her!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <p class="testi-name">Shreya P.</p>
+            <p class="testi-role">Entrepreneur · October 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="port-cta-wrap reveal" style="margin-top:3rem">
+      <a href="reviews.html" class="btn-ghost" style="display:inline-flex">Read All Reviews <i class="fas fa-arrow-right" style="font-size:0.7rem;margin-left:0.6rem"></i></a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-strip">
+    <div class="contact-left">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title">Let's Create<br><em>Something Beautiful</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="contact-tagline reveal">Ready to bring your vision to life? Reach out through any channel below — we respond within hours and love hearing your ideas.</p>
+      <div class="contact-channels">
+        <a href="tel:+918675337366" class="channel reveal">
+          <div class="channel-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <p class="channel-label">Call Us</p>
+            <p class="channel-value">+91 86753 37366</p>
+          </div>
+        </a>
+        <a href="https://wa.me/918675337366" class="channel reveal reveal-delay-1" target="_blank">
+          <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <p class="channel-label">WhatsApp</p>
+            <p class="channel-value">Quick Consultations</p>
+          </div>
+        </a>
+        <a href="mailto:designersavinya@gmail.com" class="channel reveal reveal-delay-2">
+          <div class="channel-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <p class="channel-label">Email</p>
+            <p class="channel-value">designersavinya@gmail.com</p>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/avinya_designers" class="channel reveal reveal-delay-3" target="_blank">
+          <div class="channel-icon"><i class="fab fa-instagram"></i></div>
+          <div>
+            <p class="channel-label">Instagram</p>
+            <p class="channel-value">@avinya_designers</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form-wrap reveal">
+      <p class="form-title">Start Your Design Journey</p>
+      <form>
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" placeholder="Priya">
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Kumar">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 98765 43210">
+        </div>
+        <div class="form-field">
+          <label>Design Category</label>
+          <select>
+            <option value="">Select a category</option>
+            <option>Bridal Wear</option>
+            <option>Custom Design</option>
+            <option>Festival Wear</option>
+            <option>Professional Wear</option>
+            <option>Alterations</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Tell us about your vision</label>
+          <textarea placeholder="Describe your dream design, occasion, budget, timeline…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right" style="margin-left:0.5rem;font-size:0.65rem"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none">
+          <span class="logo-main">AVINYA</span>
+          <span class="logo-sub">Designers</span>
+        </a>
+        <p class="footer-tagline">Crafting minimal luxury fashion for the modern woman. Every piece tells a story — yours to wear, yours to own.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/avinya_designers" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918675337366" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:designersavinya@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Sowmiya</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="categories.html">Services</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="categories.html">Bridal Design</a></li>
+          <li><a href="categories.html">Custom Stitching</a></li>
+          <li><a href="categories.html">Traditional Wear</a></li>
+          <li><a href="categories.html">Luxury Minimal</a></li>
+          <li><a href="categories.html">Alterations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+918675337366">+91 86753 37366</a></li>
+          <li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li>
+          <li><a href="#">Mon – Sat, 10AM – 6PM</a></li>
+          <li><a href="#">Sunday by Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>©  Avinya Designers. All rights reserved.</span>
+      <span>Designed with care for discerning women everywhere.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="fab-wrap">
+    <div class="fab-sub">
+      <span class="fab-label">Instagram</span>
+      <a href="https://www.instagram.com/avinya_designers" class="fab-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">WhatsApp</span>
+      <a href="https://wa.me/918675337366" class="fab-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">Call Us</span>
+      <a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a>
+    </div>
+    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script>
+    // Navbar scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile nav
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => obs.observe(r));
+
+    // Form submit
+    document.querySelector('form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#6BAA75';
+      setTimeout(() => {
+        btn.innerHTML = 'Send Message <i class="fas fa-arrow-right" style="margin-left:0.5rem;font-size:0.65rem"></i>';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

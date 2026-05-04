@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.pdf$
+
+Sitemap: https://yourwebsite.com/sitemap.xml

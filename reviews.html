@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews & Testimonials — Avinya Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --rose:    #C8786A;
+      --rose-dk: #A85E51;
+      --rose-lt: #EDD5CF;
+      --cream:   #F8F4EF;
+      --sand:    #EDE8E1;
+      --ink:     #1A1714;
+      --ink-60:  #6B6360;
+      --gold:    #C9A86C;
+      --white:   #FEFDFB;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Manrope', sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(248,244,239,0.92);
+      backdrop-filter: blur(16px);
+      padding: 1rem 4rem;
+      border-bottom: 1px solid rgba(200,120,106,0.12);
+    }
+    .nav-logo {
+      display: flex; flex-direction: column; line-height: 1;
+      text-decoration: none;
+    }
+    .logo-main {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 600;
+      letter-spacing: 0.2em; color: var(--rose-dk);
+    }
+    .logo-sub {
+      font-size: 0.6rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--ink-60);
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--ink);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: var(--white) !important;
+      padding: 0.6rem 1.4rem; border-radius: 2px;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dk) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--ink); transition: 0.3s; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 12rem 7rem 6rem;
+      background: var(--white);
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; right: -8rem; top: -8rem;
+      width: 40rem; height: 40rem; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,120,106,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-left {
+      position: relative; z-index: 2;
+    }
+    .page-hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s var(--ease) forwards;
+    }
+    .page-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--ink); letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.9s 0.5s var(--ease) forwards;
+    }
+    .page-hero-title em { font-style: italic; color: var(--rose); }
+    .page-hero-desc {
+      font-size: 0.9rem; color: var(--ink-60);
+      line-height: 1.9; font-weight: 300; max-width: 440px;
+      opacity: 0; animation: fadeUp 0.9s 0.7s var(--ease) forwards;
+    }
+
+    /* overall rating display */
+    .hero-rating-block {
+      opacity: 0; animation: fadeUp 0.9s 0.9s var(--ease) forwards;
+      display: flex; align-items: center; gap: 2.5rem;
+      margin-top: 2.5rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--sand);
+    }
+    .hero-big-rating {
+      text-align: center;
+    }
+    .hero-big-num {
+      font-family: var(--ff-display);
+      font-size: 4rem; font-weight: 300;
+      color: var(--rose); line-height: 1;
+    }
+    .hero-big-stars {
+      display: flex; gap: 3px; margin: 0.3rem 0;
+      justify-content: center;
+    }
+    .hero-big-stars i { color: var(--gold); font-size: 0.8rem; }
+    .hero-big-label {
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-60); font-weight: 500;
+    }
+    .hero-divider { width: 1px; height: 60px; background: var(--sand); }
+    .hero-mini-stats { display: flex; flex-direction: column; gap: 0.8rem; }
+    .hero-mini-stat {}
+    .hero-mini-num {
+      font-family: var(--ff-display);
+      font-size: 1.6rem; font-weight: 300; color: var(--ink);
+    }
+    .hero-mini-label {
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-60); font-weight: 500;
+    }
+
+    /* right side — rating breakdown card */
+    .page-hero-right {
+      opacity: 0; animation: fadeIn 1s 0.5s var(--ease) forwards;
+    }
+    .rating-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      border-left: 3px solid var(--rose);
+    }
+    .rating-card-title {
+      font-family: var(--ff-display);
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 0.3rem;
+    }
+    .rating-card-sub {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-60);
+      font-weight: 500; margin-bottom: 2rem;
+    }
+    .rating-bars { display: flex; flex-direction: column; gap: 1rem; }
+    .rating-row {
+      display: grid; grid-template-columns: 70px 1fr 40px;
+      align-items: center; gap: 1rem;
+    }
+    .rating-row-label {
+      font-size: 0.75rem; color: var(--ink-60);
+      font-weight: 500; display: flex; align-items: center; gap: 4px;
+    }
+    .rating-row-label i { color: var(--gold); font-size: 0.6rem; }
+    .bar-track {
+      height: 5px; background: var(--sand);
+      position: relative; overflow: hidden;
+    }
+    .bar-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--rose);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 1s var(--ease);
+    }
+    .bar-fill.animated { transform: scaleX(1); }
+    .rating-row-pct {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--ink); text-align: right;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--rose); padding: 0.9rem 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--white);
+      padding: 0 2.5rem; opacity: 0.9; font-weight: 500;
+    }
+    .marquee-inner i { color: var(--rose-lt); font-size: 0.5rem; }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--ink); line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-line {
+      width: 40px; height: 1px; background: var(--rose);
+      margin: 1.5rem auto 0;
+    }
+
+    /* ── TESTIMONIALS GRID ── */
+    .testimonials {
+      padding: 7rem 7rem;
+      background: var(--cream);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .testi-card {
+      background: var(--white);
+      padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(26,23,20,0.08);
+    }
+    .testi-card::before {
+      content: '\201C';
+      font-family: var(--ff-display);
+      font-size: 6rem; font-weight: 300;
+      color: var(--rose-lt); line-height: 0.8;
+      position: absolute; top: 1.5rem; right: 2rem;
+      transition: color 0.3s;
+    }
+    .testi-card:hover::before { color: var(--rose); opacity: 0.3; }
+    .testi-stars {
+      display: flex; gap: 3px; margin-bottom: 1.5rem;
+    }
+    .testi-stars i { color: var(--gold); font-size: 0.75rem; }
+    .testi-text {
+      font-size: 0.88rem; color: var(--ink-60);
+      line-height: 1.9; font-weight: 300; font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .testi-author {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--rose-lt);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-display); font-size: 1.1rem;
+      color: var(--rose); font-weight: 400; flex-shrink: 0;
+    }
+    .testi-name {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--ink); letter-spacing: 0.03em;
+    }
+    .testi-role {
+      font-size: 0.72rem; color: var(--ink-60); margin-top: 1px;
+    }
+    /* featured (large) card */
+    .testi-card.featured {
+      background: var(--rose);
+      grid-column: span 2;
+    }
+    .testi-card.featured::before { color: rgba(255,255,255,0.2); }
+    .testi-card.featured:hover::before { color: rgba(255,255,255,0.3); opacity: 1; }
+    .testi-card.featured .testi-stars i { color: rgba(255,255,255,0.9); }
+    .testi-card.featured .testi-text { color: rgba(255,255,255,0.88); font-size: 1.05rem; }
+    .testi-card.featured .testi-name { color: var(--white); }
+    .testi-card.featured .testi-role { color: rgba(255,255,255,0.65); }
+    .testi-card.featured .testi-avatar {
+      background: rgba(255,255,255,0.2);
+      color: var(--white);
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      padding: 5rem 7rem;
+      background: var(--ink);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-block {
+      text-align: center; padding: 2rem;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-block::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 0; height: 2px; background: var(--rose);
+      transition: width 0.5s var(--ease);
+    }
+    .stat-block:hover::before { width: 60%; }
+    .stat-val {
+      font-family: var(--ff-display);
+      font-size: 3.2rem; font-weight: 300; color: var(--rose);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(248,244,239,0.45);
+      margin-top: 0.6rem; font-weight: 500;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      padding: 7rem 7rem;
+      background: var(--white);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .video-card {
+      position: relative; overflow: hidden;
+      background: var(--sand);
+    }
+    .video-thumb {
+      aspect-ratio: 16/10;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--rose-lt) 100%);
+      position: relative; overflow: hidden;
+      transition: transform 0.5s var(--ease);
+    }
+    .video-card:hover .video-thumb { transform: scale(1.04); }
+    .video-thumb::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,23,20,0.4) 0%, transparent 60%);
+    }
+    .play-btn {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--white); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--rose); font-size: 1.1rem;
+      position: relative; z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding-left: 4px;
+    }
+    .video-card:hover .play-btn {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(200,120,106,0.4);
+    }
+    .video-info {
+      padding: 1.5rem;
+      background: var(--white);
+    }
+    .video-title {
+      font-family: var(--ff-display);
+      font-size: 1.15rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 0.4rem;
+    }
+    .video-sub {
+      font-size: 0.78rem; color: var(--ink-60);
+      font-weight: 300; line-height: 1.6;
+    }
+    .video-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 0; height: 3px; background: var(--rose);
+      transition: width 0.4s var(--ease);
+      z-index: 2;
+    }
+    .video-card:hover::before { width: 100%; }
+
+    /* ── CTA SECTION ── */
+    .cta-band {
+      padding: 7rem 7rem;
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .cta-left {}
+    .cta-left .section-header { text-align: left; }
+    .cta-left .section-line { margin-left: 0; }
+    .cta-left p {
+      font-size: 0.9rem; color: var(--ink-60);
+      line-height: 1.9; font-weight: 300; margin-top: 1.5rem;
+    }
+    .cta-right {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .cta-feature {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .cta-feature:hover {
+      box-shadow: 0 8px 30px rgba(26,23,20,0.07);
+      transform: translateX(4px);
+    }
+    .cta-feature-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--rose-lt); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose); font-size: 0.9rem;
+    }
+    .cta-feature-name {
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--ink); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 0.2rem;
+    }
+    .cta-feature-desc {
+      font-size: 0.78rem; color: var(--ink-60);
+      line-height: 1.6; font-weight: 300;
+    }
+    .cta-actions {
+      display: flex; gap: 1.5rem; align-items: center; margin-top: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 0.9rem 2.5rem; font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--ff-body); font-weight: 500;
+      border: none; border-radius: 2px;
+      text-decoration: none; display: inline-block;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--rose-dk); transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200,120,106,0.3);
+    }
+    .btn-ghost {
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 0.6rem;
+      transition: color 0.3s, gap 0.3s;
+    }
+    .btn-ghost:hover { color: var(--rose); gap: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 5rem 7rem 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand .logo-main { color: var(--rose); font-size: 1.4rem; }
+    .footer-brand .logo-sub { color: var(--ink-60); }
+    .footer-tagline {
+      font-size: 0.82rem; color: var(--ink-60);
+      line-height: 1.8; font-weight: 300; margin: 1.5rem 0 2rem;
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-60); font-size: 0.85rem; text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .footer-social a:hover {
+      border-color: var(--rose); color: var(--rose);
+      background: rgba(200,120,106,0.08);
+    }
+    .footer-col h5 {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; font-weight: 600;
+      color: var(--cream); margin-bottom: 1.8rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.9rem; }
+    .footer-col a {
+      font-size: 0.82rem; color: var(--ink-60);
+      text-decoration: none; font-weight: 300;
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--rose); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 2rem; font-size: 0.72rem; color: rgba(107,99,96,0.5);
+    }
+
+    /* ── FLOATING ACTIONS ── */
+    .fab-wrap {
+      position: fixed; bottom: 2rem; right: 2rem;
+      z-index: 500; display: flex; flex-direction: column;
+      align-items: flex-end; gap: 0.7rem;
+    }
+    .fab-sub {
+      display: flex; align-items: center; gap: 0.8rem;
+      opacity: 0; pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .fab-wrap:hover .fab-sub { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .fab-sub:nth-child(2) { transition-delay: 0.05s; }
+    .fab-sub:nth-child(3) { transition-delay: 0.1s; }
+    .fab-sub:nth-child(4) { transition-delay: 0.15s; }
+    .fab-label {
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600;
+      background: var(--ink); color: var(--white);
+      padding: 0.3rem 0.7rem; white-space: nowrap;
+    }
+    .fab-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--white); color: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26,23,20,0.15);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .fab-btn:hover { background: var(--rose-lt); transform: scale(1.08); }
+    .fab-main {
+      width: 54px; height: 54px;
+      background: var(--rose) !important; color: var(--white) !important;
+      font-size: 1.2rem !important;
+      box-shadow: 0 6px 24px rgba(200,120,106,0.4) !important;
+    }
+    .fab-main:hover {
+      background: var(--rose-dk) !important;
+      transform: scale(1.08) rotate(15deg) !important;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.5rem 2.5rem; }
+      nav.scrolled { padding: 1rem 2.5rem; }
+      .page-hero, .testimonials, .stats-strip, .video-section, .cta-band, footer { padding-left: 3rem; padding-right: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 2rem; }
+      nav.scrolled { padding: 0.8rem 2rem; }
+      .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
+      .logo-main { font-size: 1.3rem; }
+      .logo-sub { font-size: 0.5rem; margin-top: 0; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-hamburger span { width: 20px; height: 1.5px; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); align-items: center; justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem; }
+      .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
+      .page-hero { padding: 7rem 1.5rem 3rem; min-height: 40vh; }
+      .page-header { min-height: 30vh; padding-top: 5rem; }
+      .testimonials { padding: 4rem 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testi-card.featured { grid-column: span 1; }
+      .testimonial-card { padding: 1.5rem; }
+      .stats-strip { grid-template-columns: 1fr 1fr; padding: 3rem 1.5rem; }
+      .stat-block { border-right: none; border-bottom: 1px solid rgba(26,23,20,0.1); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+      .stat-block:last-child { border-bottom: none; }
+      .video-section { padding: 4rem 1.5rem; }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-card { min-height: auto; }
+      .rating-breakdown { padding: 4rem 1.5rem; }
+      .rating-bar { margin-bottom: 1rem; }
+      .cta-band { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.85rem; }
+    }
+    @media (max-width: 480px) {
+      nav { padding: 0.75rem 1rem; }
+      nav.scrolled { padding: 0.6rem 1rem; }
+      .logo-main { font-size: 1.1rem; }
+      .logo-sub { font-size: 0.45rem; }
+      .nav-hamburger span { width: 18px; }
+      .page-hero { padding: 5rem 1rem 2rem; }
+      .page-header { min-height: auto; padding: 4rem 1rem 2rem; }
+      .testimonials, .video-section, .rating-breakdown { padding: 2.5rem 1rem !important; }
+      h1, h2 { font-size: 1.5rem; }
+      h3 { font-size: 1.1rem; }
+      p { font-size: 0.9rem; }
+      .testimonial-card { padding: 1rem; }
+      .stats-strip { grid-template-columns: 1fr; }
+      .stat-block { border-right: none; border-bottom: 1px solid rgba(26,23,20,0.1); }
+      .video-card { padding: 1rem; }
+      .footer-top { gap: 1.5rem; }
+      .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">AVINYA</span>
+      <span class="logo-sub">Designers</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="categories.html">Services</a></li>
+      <li><a href="reviews.html" class="active">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-eyebrow"><i class="fas fa-circle" style="font-size:0.4rem;margin-right:0.5rem"></i> Client Stories — Real Voices</p>
+      <h1 class="page-hero-title">Words from Our<br><em>Happy Clients</em></h1>
+      <p class="page-hero-desc">Every review is a relationship. Over 1,000 women have trusted Avinya Designers — read their stories and discover why they keep coming back.</p>
+      <div class="hero-rating-block">
+        <div class="hero-big-rating">
+          <div class="hero-big-num">4.9</div>
+          <div class="hero-big-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <div class="hero-big-label">Avg. Rating</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-mini-stats">
+          <div class="hero-mini-stat">
+            <div class="hero-mini-num">1000+</div>
+            <div class="hero-mini-label">Happy Clients</div>
+          </div>
+          <div class="hero-mini-stat">
+            <div class="hero-mini-num">98%</div>
+            <div class="hero-mini-label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-hero-right">
+      <div class="rating-card">
+        <p class="rating-card-title">Rating Distribution</p>
+        <p class="rating-card-sub">Based on 1,000+ reviews</p>
+        <div class="rating-bars">
+          <div class="rating-row">
+            <div class="rating-row-label"><i class="fas fa-star"></i> 5 Stars</div>
+            <div class="bar-track"><div class="bar-fill" data-width="0.92"></div></div>
+            <div class="rating-row-pct">92%</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-row-label"><i class="fas fa-star"></i> 4 Stars</div>
+            <div class="bar-track"><div class="bar-fill" data-width="0.06"></div></div>
+            <div class="rating-row-pct">6%</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-row-label"><i class="fas fa-star"></i> 3 Stars</div>
+            <div class="bar-track"><div class="bar-fill" data-width="0.015"></div></div>
+            <div class="rating-row-pct">1.5%</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-row-label"><i class="fas fa-star"></i> 2 Stars</div>
+            <div class="bar-track"><div class="bar-fill" data-width="0.003"></div></div>
+            <div class="rating-row-pct">0.3%</div>
+          </div>
+          <div class="rating-row">
+            <div class="rating-row-label"><i class="fas fa-star"></i> 1 Star</div>
+            <div class="bar-track"><div class="bar-fill" data-width="0.002"></div></div>
+            <div class="rating-row-pct">0.2%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>5-Star Reviews</span><span><i class="fas fa-diamond"></i></span>
+      <span>1000+ Happy Clients</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Trusted Since 2014</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Quality</span><span><i class="fas fa-diamond"></i></span>
+      <span>5-Star Reviews</span><span><i class="fas fa-diamond"></i></span>
+      <span>1000+ Happy Clients</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Trusted Since 2014</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Quality</span><span><i class="fas fa-diamond"></i></span>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Client Stories</p>
+      <h2 class="section-title">Real Stories of <em>Style & Satisfaction</em></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <!-- Featured card (spans 2 cols) -->
+      <div class="testi-card featured reveal">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Sowmiya's designs are absolutely stunning! She understood my vision perfectly and created something beyond my expectations. The quality is impeccable and the attention to detail is remarkable. I received so many compliments on my wedding day — every guest wanted to know who designed my outfit. Truly a once-in-a-lifetime experience."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <p class="testi-name">Anjali M.</p>
+            <p class="testi-role">Bride · December 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"The custom stitching service is incredible. My clothes fit perfectly now! The consultation process was smooth and Sowmiya listened to every single detail."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <p class="testi-name">Priya K.</p>
+            <p class="testi-role">Professional · November 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Affordable luxury! Avinya Designers proves you don't have to spend a fortune to look fabulous. Love the minimal aesthetic and the way she blends traditional and trendy styles."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <p class="testi-name">Shreya P.</p>
+            <p class="testi-role">College Student · October 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"I was completely unsure about what to wear for my event, and Sowmiya guided me through every step. The final outfit was perfect! She has great color sense and really understands what works for different body types."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <p class="testi-name">Meera S.</p>
+            <p class="testi-role">Event Manager · September 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Fast delivery without compromising quality — that's the Avinya promise. I needed my dress in 10 days and she delivered on time and exceeded every expectation. Will definitely recommend!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div>
+            <p class="testi-name">Divya R.</p>
+            <p class="testi-role">Software Engineer · August 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Best investment in my wardrobe! Every piece is timeless and versatile. I can mix and match and always look put-together. Sowmiya truly understands minimal luxury aesthetics."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">N</div>
+          <div>
+            <p class="testi-name">Neha T.</p>
+            <p class="testi-role">Entrepreneur · July 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"The alterations service saved my expensive dress. Not only did she fix the fit, but she also improved the overall look. Very professional and very fair pricing!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">I</div>
+          <div>
+            <p class="testi-name">Isha M.</p>
+            <p class="testi-role">Fashion Enthusiast · June 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured card 2 (spans 2 cols) -->
+      <div class="testi-card featured reveal reveal-delay-1">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"Sowmiya designed my entire wedding trousseau — from bridal wear to casual outfits, everything is beautifully coordinated. She even helped with suggestions for jewelry and accessories. A true creative expert who goes above and beyond for her clients."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <p class="testi-name">Ritu K.</p>
+            <p class="testi-role">Bride · May 2023</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="testi-text">"As someone who prefers sustainable fashion, I appreciate how Sowmiya sources ethical fabrics. The quality is premium and I feel great supporting a local designer. Highly recommended!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">K</div>
+          <div>
+            <p class="testi-name">Kavya N.</p>
+            <p class="testi-role">Sustainability Advocate · April 2023</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="stats-strip">
+    <div class="stat-block reveal">
+      <div class="stat-val">98%</div>
+      <div class="stat-label">Satisfaction Rate</div>
+    </div>
+    <div class="stat-block reveal reveal-delay-1">
+      <div class="stat-val">1000+</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat-block reveal reveal-delay-2">
+      <div class="stat-val">150+</div>
+      <div class="stat-label">Unique Designs</div>
+    </div>
+    <div class="stat-block reveal reveal-delay-3">
+      <div class="stat-val">4.9★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+  </section>
+
+  <!-- VIDEO TESTIMONIALS -->
+  <section class="video-section">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Client Stories on Film</p>
+      <h2 class="section-title">Watch How Avinya<br><em>Changed Lives</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="video-grid">
+      <div class="video-card reveal">
+        <div class="video-thumb">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Bridal Journey with Avinya</h3>
+          <p class="video-sub">Anjali's complete wedding transformation — from first consultation to the aisle.</p>
+        </div>
+      </div>
+      <div class="video-card reveal reveal-delay-1">
+        <div class="video-thumb" style="background: linear-gradient(135deg, var(--sand) 0%, #d4c4c0 100%);">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Custom Stitching Experience</h3>
+          <p class="video-sub">How a perfect fit changed Priya's confidence and everyday style entirely.</p>
+        </div>
+      </div>
+      <div class="video-card reveal reveal-delay-2">
+        <div class="video-thumb" style="background: linear-gradient(135deg, #e8ddd9 0%, var(--rose-lt) 100%);">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Affordable Luxury Fashion</h3>
+          <p class="video-sub">Shreya's wardrobe reimagined — proof that luxury doesn't have to cost a fortune.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="cta-left reveal">
+      <div class="section-header">
+        <p class="section-eyebrow">Ready to Begin?</p>
+        <h2 class="section-title">Add Your<br><em>Story to Ours</em></h2>
+        <div class="section-line"></div>
+      </div>
+      <p>Join over 1,000 happy clients who trust Avinya Designers. Every journey starts with a single conversation — let's talk about yours.</p>
+      <div class="cta-actions" style="margin-top:2.5rem">
+        <a href="contact.html" class="btn-primary">Start Your Journey</a>
+        <a href="collections.html" class="btn-ghost">View Collections <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>
+      </div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-feature reveal reveal-delay-1">
+        <div class="cta-feature-icon"><i class="fas fa-comments"></i></div>
+        <div>
+          <p class="cta-feature-name">Free Consultation</p>
+          <p class="cta-feature-desc">No commitment required. We listen, understand, and guide you through every option.</p>
+        </div>
+      </div>
+      <div class="cta-feature reveal reveal-delay-2">
+        <div class="cta-feature-icon"><i class="fas fa-gem"></i></div>
+        <div>
+          <p class="cta-feature-name">Premium Quality</p>
+          <p class="cta-feature-desc">Every piece crafted with the finest materials and meticulous attention to detail.</p>
+        </div>
+      </div>
+      <div class="cta-feature reveal reveal-delay-3">
+        <div class="cta-feature-icon"><i class="fas fa-clock"></i></div>
+        <div>
+          <p class="cta-feature-name">On-Time Delivery</p>
+          <p class="cta-feature-desc">Strict timelines, always honoured. Your occasion will never wait on us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none">
+          <span class="logo-main">AVINYA</span>
+          <span class="logo-sub">Designers</span>
+        </a>
+        <p class="footer-tagline">Crafting minimal luxury fashion for the modern woman. Every piece tells a story — yours to wear, yours to own.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/avinya_designers" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918675337366" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:designersavinya@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Sowmiya</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="categories.html">Services</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="categories.html">Bridal Design</a></li>
+          <li><a href="categories.html">Custom Stitching</a></li>
+          <li><a href="categories.html">Traditional Wear</a></li>
+          <li><a href="categories.html">Luxury Minimal</a></li>
+          <li><a href="categories.html">Alterations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+918675337366">+91 86753 37366</a></li>
+          <li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li>
+          <li><a href="#">Mon – Sat, 10AM – 6PM</a></li>
+          <li><a href="#">Sunday by Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Avinya Designers. All rights reserved.</span>
+      <span>Designed with care for discerning women everywhere.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="fab-wrap">
+    <div class="fab-sub">
+      <span class="fab-label">Instagram</span>
+      <a href="https://www.instagram.com/avinya_designers" class="fab-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">WhatsApp</span>
+      <a href="https://wa.me/918675337366" class="fab-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">Call Us</span>
+      <a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a>
+    </div>
+    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script>
+    // Navbar scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile nav
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    // Animated rating bars — trigger when card enters viewport
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.bar-fill').forEach(bar => {
+            const w = parseFloat(bar.dataset.width);
+            bar.style.width = (w * 100) + '%';
+            bar.classList.add('animated');
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.rating-card').forEach(el => barObs.observe(el));
+  </script>
+</body>
+</html>

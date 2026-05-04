@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Sowmiya T — Avinya Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --rose:#C8786A; --rose-dk:#A85E51; --rose-lt:#EDD5CF;
+      --cream:#F8F4EF; --sand:#EDE8E1; --ink:#1A1714; --ink-60:#6B6360;
+      --gold:#C9A86C; --white:#FEFDFB;
+      --ff-display:'Cormorant Garamond',Georgia,serif;
+      --ff-body:'Manrope',sans-serif;
+      --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    /* NAV */
+    nav { position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s,backdrop-filter .4s; }
+    nav.scrolled { background:rgba(248,244,239,0.92);backdrop-filter:blur(16px);padding:1rem 4rem;border-bottom:1px solid rgba(200,120,106,.12); }
+    .nav-logo { display:flex;flex-direction:column;line-height:1;text-decoration:none; }
+    .logo-main { font-family:var(--ff-display);font-size:1.6rem;font-weight:600;letter-spacing:.2em;color:var(--rose-dk); }
+    .logo-sub { font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-60);margin-top:2px; }
+    .nav-links { display:flex;gap:2.5rem;list-style:none; }
+    .nav-links a { text-decoration:none;color:var(--ink);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:4px; }
+    .nav-links a::after { content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .3s var(--ease); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a:hover { color:var(--rose); }
+    .nav-cta { background:var(--rose);color:var(--white)!important;padding:.6rem 1.4rem;border-radius:2px;transition:background .3s,transform .2s!important; }
+    .nav-cta:hover { background:var(--rose-dk)!important;transform:translateY(-1px); }
+    .nav-cta::after { display:none!important; }
+    .nav-hamburger { display:none;flex-direction:column;gap:5px; }
+    .nav-hamburger span { width:22px;height:1.5px;background:var(--ink);transition:.3s; }
+
+    /* PAGE HERO */
+    .page-hero {
+      min-height: 60vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+    .page-hero-left {
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5rem 6rem 7rem;
+    }
+    .page-hero-eyebrow {
+      font-size: .65rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--rose-lt);
+      font-weight: 500; margin-bottom: 1.5rem;
+      opacity:0; animation: fadeUp .8s .3s var(--ease) forwards;
+    }
+    .page-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.8rem, 4.5vw, 5rem);
+      font-weight: 300; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.5rem;
+      opacity:0; animation: fadeUp .9s .5s var(--ease) forwards;
+    }
+    .page-hero-title em { font-style: italic; color: var(--rose-lt); }
+    .page-hero-sub {
+      font-size: .88rem; color: rgba(248,244,239,.55);
+      line-height: 1.9; font-weight: 300; max-width: 380px;
+      opacity:0; animation: fadeUp .9s .7s var(--ease) forwards;
+    }
+    .page-hero-right {
+      position: relative; overflow: hidden;
+      opacity:0; animation: fadeIn 1s .4s var(--ease) forwards;
+    }
+    .page-hero-right img { width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:kenBurns 12s ease-in-out infinite alternate; }
+
+    /* SECTIONS */
+    .section-eyebrow { font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:1rem; }
+    .section-title { font-family:var(--ff-display);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--ink);line-height:1.15; }
+    .section-title em { font-style:italic;color:var(--rose); }
+    .section-line { width:40px;height:1px;background:var(--rose);margin:1.5rem 0 0; }
+
+    /* STORY */
+    .story {
+      padding: 8rem 7rem;
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 7rem; align-items: start;
+      background: var(--white);
+    }
+    .story-media { position:relative; }
+    .story-img { width:100%;aspect-ratio:3/4;object-fit:cover;display:block; }
+    .story-accent {
+      position:absolute;bottom:-2rem;right:-2rem;
+      width:55%;aspect-ratio:4/3;object-fit:cover;
+      border:5px solid var(--white);
+    }
+    .story-award {
+      position:absolute;top:2.5rem;left:-2rem;
+      background:var(--rose);color:var(--white);
+      padding:1.2rem 1.5rem;
+    }
+    .story-award i { font-size:1.3rem;margin-bottom:.4rem;display:block; }
+    .story-award p { font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600; }
+    .story-content { padding-top:1rem; }
+    .story-body { font-size:.9rem;color:var(--ink-60);line-height:2;font-weight:300;margin:2rem 0 1.5rem; }
+    .story-body + .story-body { margin-top:0; }
+
+    /* ACHIEVEMENTS */
+    .achievements {
+      padding: 7rem 7rem;
+      background: var(--cream);
+    }
+    .ach-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .ach-card {
+      background: var(--white); padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform .3s var(--ease), box-shadow .3s;
+    }
+    .ach-card:hover { transform:translateY(-6px);box-shadow:0 20px 50px rgba(26,23,20,.07); }
+    .ach-card::before { content:'';position:absolute;top:0;left:0;width:0;height:3px;background:var(--rose);transition:width .4s var(--ease); }
+    .ach-card:hover::before { width:100%; }
+    .ach-icon { font-size:1.6rem;color:var(--rose);margin-bottom:1.5rem; }
+    .ach-title { font-family:var(--ff-display);font-size:1.2rem;font-weight:400;color:var(--ink);margin-bottom:.7rem; }
+    .ach-desc { font-size:.82rem;color:var(--ink-60);line-height:1.8;font-weight:300; }
+
+    /* TIMELINE */
+    .timeline-sec {
+      padding: 7rem 7rem;
+      background: var(--ink);
+    }
+    .timeline-sec .section-title { color:var(--cream); }
+    .timeline-sec .section-eyebrow { color:var(--rose-lt); }
+    .timeline-sec .section-line { background:var(--rose-lt); }
+    .timeline {
+      margin-top: 4rem;
+      display: grid; grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+    }
+    .tl-item {
+      display: contents;
+    }
+    .tl-left { text-align: right; padding: 0 2.5rem 3rem 0; }
+    .tl-right { text-align: left; padding: 0 0 3rem 2.5rem; }
+    .tl-empty { padding-bottom: 3rem; }
+    .tl-center {
+      display: flex; flex-direction: column;
+      align-items: center;
+    }
+    .tl-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--rose); flex-shrink: 0;
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 3px var(--rose);
+      margin-top: 4px;
+    }
+    .tl-line { width:1px;flex:1;background:rgba(200,120,106,.25); }
+    .tl-year { font-family:var(--ff-display);font-size:.85rem;color:var(--rose-lt);font-weight:400;letter-spacing:.1em;margin-bottom:.4rem; }
+    .tl-title { font-family:var(--ff-display);font-size:1.15rem;font-weight:400;color:var(--cream);margin-bottom:.5rem; }
+    .tl-desc { font-size:.8rem;color:rgba(248,244,239,.45);line-height:1.8;font-weight:300; }
+
+    /* TEAM */
+    .team {
+      padding: 7rem 7rem;
+      background: var(--white);
+    }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .team-card { overflow: hidden; }
+    .team-img-wrap { position:relative;overflow:hidden;aspect-ratio:3/4; }
+    .team-img-wrap img { width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease); }
+    .team-card:hover .team-img-wrap img { transform:scale(1.05); }
+    .team-info { padding:1.5rem 0; }
+    .team-name { font-family:var(--ff-display);font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:.2rem; }
+    .team-role { font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:.8rem; }
+    .team-bio { font-size:.82rem;color:var(--ink-60);line-height:1.8;font-weight:300; }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      padding: 7rem 7rem;
+      background: var(--cream);
+    }
+    .phil-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .phil-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--sand); background:var(--white);
+      transition:border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .phil-card:hover { border-color:var(--rose);box-shadow:0 12px 40px rgba(200,120,106,.1);transform:translateY(-4px); }
+    .phil-icon { font-size:1.5rem;color:var(--rose);margin-bottom:1.5rem; }
+    .phil-name { font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--ink);margin-bottom:.8rem; }
+    .phil-desc { font-size:.82rem;color:var(--ink-60);line-height:1.8;font-weight:300; }
+
+    /* CTA */
+    .cta-band {
+      background: var(--rose);
+      padding: 5rem 7rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 3rem;
+    }
+    .cta-band h2 { font-family:var(--ff-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--white);line-height:1.2; }
+    .cta-band h2 em { font-style:italic; }
+    .cta-band p { font-size:.88rem;color:rgba(255,255,255,.75);margin-top:.5rem;font-weight:300; }
+    .btn-white { background:var(--white);color:var(--rose);padding:.9rem 2.5rem;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-family:var(--ff-body);font-weight:600;border:none;border-radius:2px;text-decoration:none;display:inline-block;transition:background .3s,transform .2s;white-space:nowrap; }
+    .btn-white:hover { background:var(--rose-lt);transform:translateY(-2px); }
+
+    /* FOOTER */
+    footer { background:var(--ink);padding:5rem 7rem 2rem; }
+    .footer-top { display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.06); }
+    .footer-tagline { font-size:.82rem;color:var(--ink-60);line-height:1.8;font-weight:300;margin:1.5rem 0 2rem; }
+    .footer-social { display:flex;gap:1rem; }
+    .footer-social a { width:36px;height:36px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:var(--ink-60);font-size:.85rem;text-decoration:none;transition:border-color .3s,color .3s,background .3s; }
+    .footer-social a:hover { border-color:var(--rose);color:var(--rose);background:rgba(200,120,106,.08); }
+    .footer-col h5 { font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-weight:600;color:var(--cream);margin-bottom:1.8rem; }
+    .footer-col ul { list-style:none; }
+    .footer-col li { margin-bottom:.9rem; }
+    .footer-col a { font-size:.82rem;color:var(--ink-60);text-decoration:none;font-weight:300;transition:color .3s; }
+    .footer-col a:hover { color:var(--rose); }
+    .footer-bottom { display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:.72rem;color:rgba(107,99,96,.5); }
+
+    /* FAB */
+    .fab-wrap { position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:.7rem; }
+    .fab-sub { display:flex;align-items:center;gap:.8rem;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s var(--ease),transform .3s var(--ease); }
+    .fab-wrap:hover .fab-sub { opacity:1;pointer-events:all;transform:translateY(0); }
+    .fab-sub:nth-child(2){transition-delay:.05s} .fab-sub:nth-child(3){transition-delay:.1s} .fab-sub:nth-child(4){transition-delay:.15s}
+    .fab-label { font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;background:var(--ink);color:var(--white);padding:.3rem .7rem;white-space:nowrap; }
+    .fab-btn { width:48px;height:48px;border-radius:50%;background:var(--white);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(26,23,20,.15);transition:background .3s,transform .2s; }
+    .fab-btn:hover { background:var(--rose-lt);transform:scale(1.08); }
+    .fab-main { width:54px;height:54px;background:var(--rose)!important;color:var(--white)!important;font-size:1.2rem!important;box-shadow:0 6px 24px rgba(200,120,106,.4)!important; }
+    .fab-main:hover { background:var(--rose-dk)!important;transform:scale(1.08) rotate(15deg)!important; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes kenBurns { from{transform:scale(1.04) translateX(0)} to{transform:scale(1.1) translateX(-2%)} }
+    .reveal { opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .reveal-delay-1{transition-delay:.1s} .reveal-delay-2{transition-delay:.2s} .reveal-delay-3{transition-delay:.3s} .reveal-delay-4{transition-delay:.4s}
+
+    @media(max-width:1100px){
+      nav{padding:1.5rem 2.5rem} nav.scrolled{padding:1rem 2.5rem}
+      .page-hero-left{padding:5rem 3rem 5rem 3rem}
+      .story,.achievements,.timeline-sec,.team,.philosophy,.cta-band,.footer{padding-left:3rem;padding-right:3rem}
+      .ach-grid,.phil-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-top{grid-template-columns:1fr 1fr;gap:3rem}
+    }
+    @media(max-width:768px){
+      nav{padding:1rem 2rem} nav.scrolled{padding:.8rem 2rem}
+      .nav-logo{flex-direction:row;align-items:center;gap:.5rem}
+      .logo-main{font-size:1.3rem}
+      .logo-sub{font-size:.5rem;margin-top:0}
+      .nav-links{display:none} .nav-hamburger{display:flex}
+      .nav-hamburger span{width:20px;height:1.5px}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:2.5rem;z-index:999;padding-top:4rem}
+      .nav-links.open a{font-size:1rem;padding:.75rem;min-height:44px;display:flex;align-items:center}
+      .page-hero{grid-template-columns:1fr;min-height:45vh}
+      .page-hero-left{padding:4.5rem 1.5rem 2rem}
+      .page-hero-title{font-size:2rem}
+      .page-hero-sub{font-size:.85rem}
+      .story{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem}
+      .story-accent{display:none} .story-award{top:1rem;left:1rem}
+      .achievements,.timeline-sec,.team,.philosophy{padding:4rem 1.5rem}
+      .ach-grid{grid-template-columns:1fr}
+      .timeline{grid-template-columns:40px 1fr}
+      .tl-left{display:none} .tl-right{padding-left:1.5rem}
+      .team-grid{grid-template-columns:1fr}
+      .phil-grid{grid-template-columns:1fr}
+      .cta-band{flex-direction:column;text-align:center;padding:3rem 1.5rem;gap:1.5rem}
+      footer{padding:3rem 1.5rem 1.5rem}
+      .footer-top{grid-template-columns:1fr;gap:2rem}
+      .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;font-size:.85rem}
+    }
+    @media(max-width:480px){
+      nav{padding:.75rem 1rem} nav.scrolled{padding:.6rem 1rem}
+      .logo-main{font-size:1.1rem}
+      .logo-sub{font-size:.45rem}
+      .nav-hamburger span{width:18px}
+      .page-hero{min-height:auto;padding-top:3.5rem}
+      .page-hero-left{padding:3.5rem 1rem 2rem}
+      .page-hero-title{font-size:1.5rem}
+      .page-hero-sub{font-size:.8rem}
+      .story,.achievements,.timeline-sec,.team,.philosophy{padding:2.5rem 1rem !important}
+      h2{font-size:1.8rem}
+      h3{font-size:1.2rem}
+      p{font-size:.9rem}
+      .footer-top{gap:1.5rem}
+      .footer-bottom{gap:.3rem;font-size:.8rem}
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo"><span class="logo-main">AVINYA</span><span class="logo-sub">Designers</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="categories.html">Services</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Book a Consult</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-left">
+      <p class="page-hero-eyebrow"><i class="fas fa-circle" style="font-size:.4rem;margin-right:.5rem"></i> The Designer Behind Avinya</p>
+      <h1 class="page-hero-title">Meet<br><em>Sowmiya T</em></h1>
+      <p class="page-hero-sub">Founder, Lead Designer, and the creative soul behind every stitch at Avinya Designers.</p>
+    </div>
+    <div class="page-hero-right">
+      <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&h=900&fit=crop&crop=center" alt="Sowmiya T">
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="about-media reveal">
+      <img class="story-img" src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&h=800&fit=crop" alt="Sowmiya at work">
+      <img class="story-accent" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Atelier detail">
+      <div class="story-award">
+        <i class="fas fa-trophy"></i>
+        <p>Best Emerging<br>Designer 2022</p>
+      </div>
+    </div>
+    <div class="story-content">
+      <div class="reveal">
+        <p class="section-eyebrow">Her Story</p>
+        <h2 class="section-title">Creative <em>Excellence</em><br>in Fashion Design</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="story-body reveal">With over 10 years of experience in fashion design, Sowmiya T brings a rare blend of traditional craftsmanship and contemporary sensibility to every creation. Her passion for minimal luxury has established Avinya Designers as a trusted name among discerning clients across the country.</p>
+      <p class="story-body reveal">Sowmiya's journey started with a single vision: to create clothes that aren't just beautiful, but meaningful. She believes that every piece tells a story, and her designs are crafted to make each wearer feel confident, elegant, and completely authentic.</p>
+      <p class="story-body reveal">From her first national fashion show in 2015 to designing complete bridal trousseaux, every milestone has been shaped by one belief — that great design is deeply personal.</p>
+      <div style="margin-top:2.5rem" class="reveal">
+        <a href="contact.html" style="background:var(--rose);color:var(--white);padding:.9rem 2.5rem;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-family:var(--ff-body);font-weight:600;border:none;border-radius:2px;text-decoration:none;display:inline-block;transition:background .3s,transform .2s">Work With Sowmiya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="achievements">
+    <div class="section-header reveal" style="text-align:center;margin-bottom:0">
+      <p class="section-eyebrow" style="text-align:center">Recognition</p>
+      <h2 class="section-title" style="text-align:center">Key <em>Achievements</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 0"></div>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card reveal"><div class="ach-icon"><i class="fas fa-star"></i></div><h3 class="ach-title">15+ Fashion Shows</h3><p class="ach-desc">Participated in national and international fashion shows, showcasing collections that blend heritage with modern design.</p></div>
+      <div class="ach-card reveal reveal-delay-1"><div class="ach-icon"><i class="fas fa-trophy"></i></div><h3 class="ach-title">Best Emerging Designer</h3><p class="ach-desc">Awarded Best Emerging Designer in 2022, recognising exceptional talent and a distinctive design vision.</p></div>
+      <div class="ach-card reveal reveal-delay-2"><div class="ach-icon"><i class="fas fa-users"></i></div><h3 class="ach-title">1000+ Happy Clients</h3><p class="ach-desc">Over a thousand satisfied clients nationwide, with a 98% satisfaction rate and countless repeat customers.</p></div>
+      <div class="ach-card reveal"><div class="ach-icon"><i class="fas fa-scissors"></i></div><h3 class="ach-title">10+ Years of Expertise</h3><p class="ach-desc">A decade of specialised design experience across bridal wear, traditional fusion, and luxury minimal aesthetics.</p></div>
+      <div class="ach-card reveal reveal-delay-1"><div class="ach-icon"><i class="fas fa-heart"></i></div><h3 class="ach-title">Traditional & Trendy Fusion</h3><p class="ach-desc">Expert in weaving cultural heritage into contemporary silhouettes — designs that honour the past while celebrating the now.</p></div>
+      <div class="ach-card reveal reveal-delay-2"><div class="ach-icon"><i class="fas fa-bolt"></i></div><h3 class="ach-title">Quick Turnaround</h3><p class="ach-desc">Renowned for delivering exceptional quality within tight timelines — without ever compromising on the craft.</p></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-sec">
+    <div style="text-align:center;margin-bottom:0" class="reveal">
+      <p class="section-eyebrow" style="text-align:center">The Journey</p>
+      <h2 class="section-title" style="text-align:center">A Decade of <em>Excellence</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 0;background:var(--rose)"></div>
+    </div>
+    <div class="timeline" style="margin-top:4rem">
+      <!-- item 1 -->
+      <div class="tl-left reveal"><p class="tl-year">2013</p><h3 class="tl-title">Avinya Designers Founded</h3><p class="tl-desc">Launched with a vision to make minimal luxury fashion accessible to every woman.</p></div>
+      <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-empty"></div>
+      <!-- item 2 -->
+      <div class="tl-empty"></div>
+      <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-right reveal"><p class="tl-year">2015</p><h3 class="tl-title">First National Fashion Show</h3><p class="tl-desc">Featured at Mumbai Fashion Week with an exclusive bridal collection.</p></div>
+      <!-- item 3 -->
+      <div class="tl-left reveal"><p class="tl-year">2018</p><h3 class="tl-title">Expanded Services</h3><p class="tl-desc">Introduced custom stitching, design consultation, and bridal trousseau packages.</p></div>
+      <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-empty"></div>
+      <!-- item 4 -->
+      <div class="tl-empty"></div>
+      <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-right reveal"><p class="tl-year">2022</p><h3 class="tl-title">Best Emerging Designer Award</h3><p class="tl-desc">Nationally recognised for outstanding design vision and craftsmanship.</p></div>
+      <!-- item 5 -->
+      <div class="tl-left reveal"><p class="tl-year">2023</p><h3 class="tl-title">1000+ Happy Clients</h3><p class="tl-desc">A landmark milestone — over a thousand satisfied clients served nationwide.</p></div>
+      <div class="tl-center"><div class="tl-dot"></div><div class="tl-line" style="background:transparent"></div></div>
+      <div class="tl-empty"></div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div style="text-align:center;margin-bottom:0" class="reveal">
+      <p class="section-eyebrow" style="text-align:center">The People</p>
+      <h2 class="section-title" style="text-align:center">The <em>Creative Team</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 3.5rem"></div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&h=650&fit=crop&crop=face" alt="Sowmiya T">
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Sowmiya T</h3>
+          <p class="team-role">Lead Designer & Founder</p>
+          <p class="team-bio">Creative visionary with 10+ years of expertise in fashion design, trend forecasting, and bridal couture.</p>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=650&fit=crop&crop=face" alt="Senior Tailor">
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Master Craftsperson</h3>
+          <p class="team-role">Senior Tailor</p>
+          <p class="team-bio">Expert in precision stitching and custom tailoring with 15+ years of hands-on craftsmanship.</p>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=650&fit=crop&crop=face" alt="Pattern Designer">
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Pattern Specialist</h3>
+          <p class="team-role">Design Specialist</p>
+          <p class="team-bio">Specialised in creating innovative patterns and fabric combinations that elevate every garment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div style="text-align:center;margin-bottom:0" class="reveal">
+      <p class="section-eyebrow" style="text-align:center">Our Approach</p>
+      <h2 class="section-title" style="text-align:center">Design <em>Philosophy</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 3.5rem"></div>
+    </div>
+    <div class="phil-grid">
+      <div class="phil-card reveal"><div class="phil-icon"><i class="fas fa-lightbulb"></i></div><h3 class="phil-name">Innovation</h3><p class="phil-desc">Blending traditional craftsmanship with contemporary design trends to create timeless, unforgettable pieces.</p></div>
+      <div class="phil-card reveal reveal-delay-1"><div class="phil-icon"><i class="fas fa-gem"></i></div><h3 class="phil-name">Quality</h3><p class="phil-desc">Every stitch, every fabric, every detail is carefully chosen to ensure the highest possible standard.</p></div>
+      <div class="phil-card reveal reveal-delay-2"><div class="phil-icon"><i class="fas fa-heart"></i></div><h3 class="phil-name">Personalization</h3><p class="phil-desc">Understanding each client's unique style and creating designs that perfectly match their personality and life.</p></div>
+      <div class="phil-card reveal reveal-delay-3"><div class="phil-icon"><i class="fas fa-leaf"></i></div><h3 class="phil-name">Sustainability</h3><p class="phil-desc">Committed to ethical practices and sourcing sustainable materials wherever possible.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band reveal">
+    <div>
+      <h2>Ready to Create Your <em>Perfect Design?</em></h2>
+      <p>Let's bring your vision to life with expert design and craftsmanship</p>
+    </div>
+    <a href="contact.html" class="btn-white">Start Your Project</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="nav-logo" style="text-decoration:none"><span class="logo-main">AVINYA</span><span class="logo-sub">Designers</span></a>
+        <p class="footer-tagline">Crafting minimal luxury fashion for the modern woman. Every piece tells a story — yours to wear, yours to own.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/avinya_designers" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918675337366" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:designersavinya@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Navigation</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="categories.html">Bridal Design</a></li><li><a href="categories.html">Custom Stitching</a></li><li><a href="categories.html">Traditional Wear</a></li><li><a href="categories.html">Luxury Minimal</a></li><li><a href="categories.html">Alterations</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+918675337366">+91 86753 37366</a></li><li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li><li><a href="#">Mon–Sat, 10AM–6PM</a></li><li><a href="#">Sunday by Appointment</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Avinya Designers. All rights reserved.</span><span>Designed with care for discerning women everywhere.</span></div>
+  </footer>
+
+  <div class="fab-wrap">
+    <div class="fab-sub"><span class="fab-label">Instagram</span><a href="https://www.instagram.com/avinya_designers" class="fab-btn" target="_blank"><i class="fab fa-instagram"></i></a></div>
+    <div class="fab-sub"><span class="fab-label">WhatsApp</span><a href="https://wa.me/918675337366" class="fab-btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+    <div class="fab-sub"><span class="fab-label">Call Us</span><a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a></div>
+    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script>
+    window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+    function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>

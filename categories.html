@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Categories — Avinya Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --rose:    #C8786A;
+      --rose-dk: #A85E51;
+      --rose-lt: #EDD5CF;
+      --cream:   #F8F4EF;
+      --sand:    #EDE8E1;
+      --ink:     #1A1714;
+      --ink-60:  #6B6360;
+      --gold:    #C9A86C;
+      --white:   #FEFDFB;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Manrope', sans-serif;
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+   
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(248,244,239,0.92);
+      backdrop-filter: blur(16px);
+      padding: 1rem 4rem;
+      border-bottom: 1px solid rgba(200,120,106,0.12);
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+    .logo-main { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 600; letter-spacing: 0.2em; color: var(--rose-dk); }
+    .logo-sub { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ink-60); margin-top: 2px; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--ink);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; width: 0; height: 1px;
+      background: var(--rose); transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: var(--white) !important;
+      padding: 0.6rem 1.4rem; border-radius: 2px;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dk) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; }
+    .nav-hamburger span { width: 22px; height: 1.5px; background: var(--ink); transition: 0.3s; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      padding: 0 7rem 5rem;
+      position: relative; overflow: hidden;
+      background: var(--ink);
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1400&h=700&fit=crop&crop=center') center/cover;
+      opacity: 0.18;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose-lt);
+      margin-bottom: 1.2rem; font-weight: 500;
+      opacity: 0; animation: fadeUp 0.8s 0.3s var(--ease) forwards;
+    }
+    .page-hero-eyebrow i { font-size: 0.4rem; margin-right: 0.5rem; }
+    .page-hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300; color: var(--cream);
+      line-height: 1.1; letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.9s 0.5s var(--ease) forwards;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--rose); }
+    .page-hero-desc {
+      font-size: 0.9rem; color: rgba(248,244,239,0.55);
+      font-weight: 300; max-width: 460px; line-height: 1.8;
+      opacity: 0; animation: fadeUp 0.9s 0.7s var(--ease) forwards;
+    }
+    .page-hero-breadcrumb {
+      position: absolute; top: 7rem; right: 7rem;
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(248,244,239,0.35);
+      display: flex; gap: 0.8rem; align-items: center;
+      opacity: 0; animation: fadeIn 0.8s 1s var(--ease) forwards;
+    }
+    .page-hero-breadcrumb a { color: inherit; text-decoration: none; transition: color 0.3s; }
+    .page-hero-breadcrumb a:hover { color: var(--rose); }
+    .page-hero-breadcrumb span { color: var(--rose); }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--rose); padding: 0.9rem 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex; gap: 0;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--white);
+      padding: 0 2.5rem; opacity: 0.9; font-weight: 500;
+    }
+    .marquee-inner i { color: var(--rose-lt); font-size: 0.5rem; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTION HEADERS ── */
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300; color: var(--ink); line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-line { width: 40px; height: 1px; background: var(--rose); margin: 1.5rem auto 0; }
+
+    /* ── DESIGN CATEGORIES (4 col hover) ── */
+    .categories-section { padding: 7rem 7rem; background: var(--white); }
+    .categories-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--sand);
+      border: 1px solid var(--sand);
+    }
+    .category-item {
+      background: var(--white); padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.4s var(--ease);
+    }
+    .category-item::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 0; height: 3px; background: var(--rose);
+      transition: width 0.4s var(--ease);
+    }
+    .category-item:hover { background: var(--cream); }
+    .category-item:hover::before { width: 100%; }
+    .category-num {
+      font-family: var(--ff-display); font-size: 3.5rem;
+      font-weight: 300; color: var(--rose-lt); line-height: 1;
+      margin-bottom: 1.5rem; transition: color 0.3s;
+    }
+    .category-item:hover .category-num { color: var(--rose); }
+    .category-icon {
+      width: 44px; height: 44px; background: var(--rose-lt);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; color: var(--rose); font-size: 1rem;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .category-item:hover .category-icon { background: var(--rose); color: var(--white); }
+    .category-name {
+      font-family: var(--ff-display); font-size: 1.35rem;
+      font-weight: 400; color: var(--ink); margin-bottom: 1rem; line-height: 1.2;
+    }
+    .category-desc { font-size: 0.82rem; color: var(--ink-60); line-height: 1.8; font-weight: 300; }
+    .category-arrow {
+      margin-top: 2rem; font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--rose); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem; font-weight: 500;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s, gap 0.3s;
+    }
+    .category-item:hover .category-arrow { opacity: 1; transform: translateY(0); }
+    .category-arrow:hover { gap: 0.9rem; }
+
+    /* ── PREMIUM SERVICES ── */
+    .services-section { padding: 7rem 7rem; background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--white); padding: 2.8rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(26,23,20,0.08);
+      border-bottom-color: var(--rose);
+    }
+    .service-icon-wrap {
+      width: 52px; height: 52px; background: var(--rose-lt);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose); font-size: 1.2rem; margin-bottom: 1.8rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .service-card:hover .service-icon-wrap { background: var(--rose); color: var(--white); }
+    .service-card h3 {
+      font-family: var(--ff-display); font-size: 1.3rem;
+      font-weight: 400; color: var(--ink); margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .service-card p { font-size: 0.83rem; color: var(--ink-60); line-height: 1.8; font-weight: 300; }
+    .service-features { list-style: none; margin-top: 1.5rem; }
+    .service-features li {
+      font-size: 0.78rem; color: var(--ink-60); font-weight: 300;
+      padding: 0.45rem 0; display: flex; align-items: center; gap: 0.7rem;
+      border-bottom: 1px solid var(--sand);
+    }
+    .service-features li:last-child { border: none; }
+    .service-features i { color: var(--rose); font-size: 0.6rem; }
+
+    /* ── PROCESS (dark bg) ── */
+    .process-section { padding: 7rem 7rem; background: var(--ink); }
+    .process-section .section-title { color: var(--cream); }
+    .process-section .section-eyebrow { color: var(--rose-lt); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; margin-top: 4rem; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 28px; left: 10%; right: 10%;
+      height: 1px; background: rgba(200,120,106,0.3);
+    }
+    .process-step { text-align: center; padding: 0 1.5rem; position: relative; }
+    .step-dot {
+      width: 56px; height: 56px; background: var(--rose); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: var(--ff-display); font-size: 1.3rem;
+      font-weight: 400; color: var(--white); position: relative; z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .process-step:hover .step-dot {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 8px rgba(200,120,106,0.2);
+    }
+    .step-title { font-family: var(--ff-display); font-size: 1.1rem; font-weight: 400; color: var(--cream); margin-bottom: 0.7rem; }
+    .step-desc { font-size: 0.78rem; color: rgba(248,244,239,0.5); line-height: 1.7; font-weight: 300; }
+
+    /* ── PRICING ── */
+    .pricing-section { padding: 7rem 7rem; background: var(--white); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .price-card {
+      border: 1px solid var(--sand); padding: 3rem 2.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .price-card:hover {
+      border-color: var(--rose);
+      box-shadow: 0 16px 50px rgba(200,120,106,0.12);
+      transform: translateY(-4px);
+    }
+    .price-card.featured { background: var(--rose); border-color: var(--rose); color: white; }
+    .price-card.featured * { color: rgba(255,255,255,0.9) !important; }
+    .price-card.featured h3 { color: white !important; }
+    .price-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: var(--white); color: var(--rose);
+      font-size: 0.6rem; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 0.3rem 0.8rem;
+    }
+    .price-tier { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; color: var(--rose); margin-bottom: 1rem; }
+    .price-card.featured .price-tier { color: var(--rose-lt); }
+    .price-name { font-family: var(--ff-display); font-size: 2rem; font-weight: 300; color: var(--ink); margin-bottom: 0.5rem; }
+    .price-amount { font-family: var(--ff-display); font-size: 2.8rem; font-weight: 300; color: var(--rose); line-height: 1; margin: 1.5rem 0 0.3rem; }
+    .price-card.featured .price-amount { color: var(--white) !important; }
+    .price-from { font-size: 0.72rem; color: var(--ink-60); margin-bottom: 2rem; }
+    .price-divider { height: 1px; background: var(--sand); margin: 2rem 0; }
+    .price-card.featured .price-divider { background: rgba(255,255,255,0.2); }
+    .price-features { list-style: none; }
+    .price-features li {
+      font-size: 0.82rem; color: var(--ink-60); padding: 0.6rem 0;
+      display: flex; align-items: center; gap: 0.8rem;
+      border-bottom: 1px solid var(--sand); font-weight: 300;
+    }
+    .price-card.featured .price-features li { border-color: rgba(255,255,255,0.15); }
+    .price-features li:last-child { border: none; }
+    .price-features i { color: var(--rose); font-size: 0.65rem; }
+    .price-card.featured .price-features i { color: var(--rose-lt); }
+    .price-cta {
+      margin-top: 2.5rem; width: 100%; padding: 0.9rem;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--ff-body); font-weight: 600;
+      border: 1.5px solid var(--rose); background: transparent;
+      color: var(--rose); transition: background 0.3s, color 0.3s, transform 0.2s;
+      text-decoration: none; display: block; text-align: center;
+    }
+    .price-cta:hover { background: var(--rose); color: var(--white); transform: translateY(-1px); }
+    .price-card.featured .price-cta { background: var(--white); color: var(--rose); border-color: var(--white); }
+    .price-card.featured .price-cta:hover { background: var(--rose-lt); }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      padding: 7rem 7rem;
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .cta-left .section-header { text-align: left; }
+    .cta-left .section-line { margin-left: 0; }
+    .cta-tagline { font-size: 0.88rem; color: var(--ink-60); line-height: 1.9; font-weight: 300; margin-top: 1.5rem; }
+    .cta-actions { display: flex; gap: 1.5rem; align-items: center; margin-top: 2.5rem; }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 0.9rem 2.5rem; font-size: 0.75rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      font-family: var(--ff-body); font-weight: 500;
+      border: none; border-radius: 2px;
+      text-decoration: none; display: inline-block;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(200,120,106,0.3); }
+    .btn-ghost {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 0.6rem; transition: color 0.3s, gap 0.3s;
+    }
+    .btn-ghost:hover { color: var(--rose); gap: 1rem; }
+    .cta-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .cta-stat {
+      background: var(--white); padding: 2rem;
+      border-left: 3px solid var(--rose-lt);
+      transition: border-color 0.3s;
+    }
+    .cta-stat:hover { border-left-color: var(--rose); }
+    .cta-stat-val { font-family: var(--ff-display); font-size: 2.2rem; font-weight: 300; color: var(--rose); }
+    .cta-stat-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-60); margin-top: 0.3rem; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 5rem 7rem 2rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand .logo-main { color: var(--rose); font-size: 1.4rem; }
+    .footer-brand .logo-sub { color: var(--ink-60); }
+    .footer-tagline { font-size: 0.82rem; color: var(--ink-60); line-height: 1.8; font-weight: 300; margin: 1.5rem 0 2rem; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-60); font-size: 0.85rem; text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--rose); color: var(--rose); background: rgba(200,120,106,0.08); }
+    .footer-col h5 { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; color: var(--cream); margin-bottom: 1.8rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.9rem; }
+    .footer-col a { font-size: 0.82rem; color: var(--ink-60); text-decoration: none; font-weight: 300; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--rose); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.72rem; color: rgba(107,99,96,0.5); }
+
+    /* ── FAB ── */
+    .fab-wrap { position: fixed; bottom: 2rem; right: 2rem; z-index: 500; display: flex; flex-direction: column; align-items: flex-end; gap: 0.7rem; }
+    .fab-sub { display: flex; align-items: center; gap: 0.8rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); }
+    .fab-wrap:hover .fab-sub { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .fab-sub:nth-child(2) { transition-delay: 0.05s; }
+    .fab-sub:nth-child(3) { transition-delay: 0.1s; }
+    .fab-sub:nth-child(4) { transition-delay: 0.15s; }
+    .fab-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; background: var(--ink); color: var(--white); padding: 0.3rem 0.7rem; white-space: nowrap; }
+    .fab-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--white); color: var(--rose); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; text-decoration: none; box-shadow: 0 4px 16px rgba(26,23,20,0.15); transition: background 0.3s, transform 0.2s; }
+    .fab-btn:hover { background: var(--rose-lt); transform: scale(1.08); }
+    .fab-main { width: 54px; height: 54px; background: var(--rose) !important; color: var(--white) !important; font-size: 1.2rem !important; box-shadow: 0 6px 24px rgba(200,120,106,0.4) !important; }
+    .fab-main:hover { background: var(--rose-dk) !important; transform: scale(1.08) rotate(15deg) !important; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav, nav.scrolled { padding-left: 2.5rem; padding-right: 2.5rem; }
+      .page-hero { padding: 0 3rem 4rem; }
+      .page-hero-breadcrumb { right: 3rem; }
+      .categories-section, .services-section, .process-section, .pricing-section, .cta-strip, footer { padding-left: 3rem; padding-right: 3rem; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 2rem; }
+      nav.scrolled { padding: 0.8rem 2rem; }
+      .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
+      .logo-main { font-size: 1.3rem; }
+      .logo-sub { font-size: 0.5rem; margin-top: 0; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-hamburger span { width: 20px; height: 1.5px; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); align-items: center; justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem; }
+      .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
+      .page-hero { padding: 5rem 1.5rem 3rem; min-height: 45vh; }
+      .page-hero-breadcrumb { display: none; }
+      .categories-section, .services-section, .process-section, .pricing-section { padding: 4rem 1.5rem; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .cta-strip { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+      footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.85rem; }
+      .category-item, .service-card, .price-card { min-height: auto; }
+    }
+    @media (max-width: 480px) {
+      nav { padding: 0.75rem 1rem; }
+      nav.scrolled { padding: 0.6rem 1rem; }
+      .logo-main { font-size: 1.1rem; }
+      .logo-sub { font-size: 0.45rem; }
+      .nav-hamburger span { width: 18px; }
+      .page-hero { padding: 4rem 1rem 2rem; min-height: auto; margin-top: 2rem; }
+      .categories-section, .services-section, .process-section, .pricing-section { padding: 2.5rem 1rem !important; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.2rem; }
+      p { font-size: 0.9rem; }
+      .footer-top { gap: 1.5rem; }
+      .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cursor-ring"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-main">AVINYA</span>
+      <span class="logo-sub">Designers</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="collections.html">Collections</a></li>
+      <li><a href="categories.html" class="active">Services</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html" class="nav-cta">Book a Consult</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right" style="font-size:0.5rem"></i>
+      <span>Services</span>
+    </div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow"><i class="fas fa-circle"></i> Expert Design Solutions</p>
+      <h1>Services &amp; <em>Categories</em></h1>
+      <p class="page-hero-desc">From bridal couture to everyday minimal — every service crafted with intention, precision, and a deep love for the art of fashion.</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
+      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
+      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
+      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
+      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
+      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
+      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
+      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
+    </div>
+  </div>
+
+  <!-- DESIGN CATEGORIES -->
+  <section class="categories-section">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">What We Create</p>
+      <h2 class="section-title">Design <em>Categories</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="categories-grid">
+      <div class="category-item reveal">
+        <div class="category-num">01</div>
+        <div class="category-icon"><i class="fas fa-star-and-crescent"></i></div>
+        <h3 class="category-name">Traditional Designs</h3>
+        <p class="category-desc">Authentic heritage wear with a modern twist. Intricate embroidery, rich fabrics, and timeless patterns for your most special days — festivals, weddings, and celebrations.</p>
+        <a href="contact.html" class="category-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="category-item reveal reveal-delay-1">
+        <div class="category-num">02</div>
+        <div class="category-icon"><i class="fas fa-wind"></i></div>
+        <h3 class="category-name">Trendy Styles</h3>
+        <p class="category-desc">Contemporary silhouettes that blend comfort with sophistication. Stay ahead with designs made for the modern, confident woman — everyday wear and professional looks.</p>
+        <a href="contact.html" class="category-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="category-item reveal reveal-delay-2">
+        <div class="category-num">03</div>
+        <div class="category-icon"><i class="fas fa-cut"></i></div>
+        <h3 class="category-name">Custom Stitching</h3>
+        <p class="category-desc">Perfectly tailored to your measurements and style. Every stitch considered, every detail intentional — garments made just for you, fitting like a second skin.</p>
+        <a href="contact.html" class="category-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+      <div class="category-item reveal reveal-delay-3">
+        <div class="category-num">04</div>
+        <div class="category-icon"><i class="fas fa-gem"></i></div>
+        <h3 class="category-name">Luxury Minimal</h3>
+        <p class="category-desc">Elegant simplicity in premium fabrics. Understated pieces that speak volumes — for the woman who knows less is more, and quality is never compromised.</p>
+        <a href="contact.html" class="category-arrow">Explore <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM SERVICES -->
+  <section class="services-section">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Premium Services</p>
+      <h2 class="section-title">Complete <em>Design Solutions</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="fas fa-pencil-ruler"></i></div>
+        <h3>Custom Design Consultation</h3>
+        <p>One-on-one sessions to understand your style, personality, and occasion — creating designs that feel entirely, unmistakably yours.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Personal style assessment</li>
+          <li><i class="fas fa-check"></i> Bespoke design sketches</li>
+          <li><i class="fas fa-check"></i> Fabric selection guidance</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap"><i class="fas fa-cut"></i></div>
+        <h3>Premium Tailoring</h3>
+        <p>Expert stitching and tailoring with impeccable finish on every piece. Precision craftsmanship — each garment holds your shape flawlessly.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Precise body measurements</li>
+          <li><i class="fas fa-check"></i> Multiple fitting sessions</li>
+          <li><i class="fas fa-check"></i> Flawless quality finish</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap"><i class="fas fa-palette"></i></div>
+        <h3>Color &amp; Fabric Selection</h3>
+        <p>Curated recommendations that complement your skin tone, body type, and aesthetic — turning fabric into an extension of your identity.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Premium fabric sourcing</li>
+          <li><i class="fas fa-check"></i> Skin-tone color consulting</li>
+          <li><i class="fas fa-check"></i> Texture &amp; drape selection</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-wrap"><i class="fas fa-bolt"></i></div>
+        <h3>Fast Turnaround</h3>
+        <p>Timely delivery without a single compromise on quality. Get your perfect outfit ready exactly when you need it — events, emergencies, and everything between.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Express 72-hr service</li>
+          <li><i class="fas fa-check"></i> Flexible timelines</li>
+          <li><i class="fas fa-check"></i> Quality always maintained</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap"><i class="fas fa-magic"></i></div>
+        <h3>Alterations &amp; Modifications</h3>
+        <p>Transform existing pieces with skilled alteration work. Refresh your wardrobe, adjust the fit, or reimagine a beloved garment for a new season.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Resizing &amp; restructuring</li>
+          <li><i class="fas fa-check"></i> Full redesign service</li>
+          <li><i class="fas fa-check"></i> Embellishment &amp; detailing</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap"><i class="fas fa-heart"></i></div>
+        <h3>Bridal Services</h3>
+        <p>A complete bridal package — from first sketch to the final fitting. Your most important day deserves the most exquisite attention to detail.</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> End-to-end bridal design</li>
+          <li><i class="fas fa-check"></i> Outfit coordination</li>
+          <li><i class="fas fa-check"></i> Day-of support included</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">From <em>Vision</em> to Reality</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">1</div>
+        <h3 class="step-title">Consultation</h3>
+        <p class="step-desc">We meet to understand your vision, style, budget, and occasion.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-dot">2</div>
+        <h3 class="step-title">Design Sketch</h3>
+        <p class="step-desc">Custom sketches crafted around your personality and preferences.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-dot">3</div>
+        <h3 class="step-title">Fabric Selection</h3>
+        <p class="step-desc">Curated premium fabrics selected for your design and skin tone.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-dot">4</div>
+        <h3 class="step-title">Expert Tailoring</h3>
+        <p class="step-desc">Multiple fittings ensure flawless fit and exceptional finish.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-dot">5</div>
+        <h3 class="step-title">Delivery</h3>
+        <p class="step-desc">Your perfect design — ready to wear and make you unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING removed per request -->
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="cta-left">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Ready to Begin?</p>
+        <h2 class="section-title">Find Your <em>Perfect</em> Design</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="cta-tagline reveal">Our expert team is ready to bring exactly what you envision to life. Reach out and let's start your design journey together.</p>
+      <div class="cta-actions reveal">
+        <a href="contact.html" class="btn-primary">Start Consultation</a>
+        <a href="collections.html" class="btn-ghost">View Collections <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>
+      </div>
+    </div>
+    <div class="cta-stats reveal">
+      <div class="cta-stat">
+        <div class="cta-stat-val">1000+</div>
+        <div class="cta-stat-label">Happy Clients</div>
+      </div>
+      <div class="cta-stat">
+        <div class="cta-stat-val">10+</div>
+        <div class="cta-stat-label">Years of Excellence</div>
+      </div>
+      <div class="cta-stat">
+        <div class="cta-stat-val">4.9★</div>
+        <div class="cta-stat-label">Average Rating</div>
+      </div>
+      <div class="cta-stat">
+        <div class="cta-stat-val">6</div>
+        <div class="cta-stat-label">Design Services</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none">
+          <span class="logo-main">AVINYA</span>
+          <span class="logo-sub">Designers</span>
+        </a>
+        <p class="footer-tagline">Crafting minimal luxury fashion for the modern woman. Every piece tells a story — yours to wear, yours to own.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/avinya_designers" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918675337366" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:designersavinya@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Sowmiya</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="categories.html">Services</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="categories.html">Bridal Design</a></li>
+          <li><a href="categories.html">Custom Stitching</a></li>
+          <li><a href="categories.html">Traditional Wear</a></li>
+          <li><a href="categories.html">Luxury Minimal</a></li>
+          <li><a href="categories.html">Alterations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+918675337366">+91 86753 37366</a></li>
+          <li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li>
+          <li><a href="#">Mon – Sat, 10AM – 6PM</a></li>
+          <li><a href="#">Sunday by Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Avinya Designers. All rights reserved.</span>
+      <span>Designed with care for discerning women everywhere.</span>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="fab-wrap">
+    <div class="fab-sub">
+      <span class="fab-label">Instagram</span>
+      <a href="https://www.instagram.com/avinya_designers" class="fab-btn" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">WhatsApp</span>
+      <a href="https://wa.me/918675337366" class="fab-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="fab-sub">
+      <span class="fab-label">Call Us</span>
+      <a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a>
+    </div>
+    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script>
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    document.addEventListener('mousemove', e => {
+      cur.style.left  = e.clientX + 'px';
+      cur.style.top   = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .category-item, .service-card, .price-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cur.style.width  = '20px'; cur.style.height = '20px';
+        ring.style.width = '56px'; ring.style.height = '56px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cur.style.width  = '10px'; cur.style.height = '10px';
+        ring.style.width = '36px'; ring.style.height = '36px';
+      });
+    });
+
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => obs.observe(r));
+  </script>
+</body>
+</html>

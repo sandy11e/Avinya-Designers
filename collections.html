@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections — Avinya Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--rose:#C8786A;--rose-dk:#A85E51;--rose-lt:#EDD5CF;--cream:#F8F4EF;--sand:#EDE8E1;--ink:#1A1714;--ink-60:#6B6360;--gold:#C9A86C;--white:#FEFDFB;--ff-display:'Cormorant Garamond',Georgia,serif;--ff-body:'Manrope',sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94)}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ff-body);background:var(--cream);color:var(--ink);overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s}
+    nav.scrolled{background:rgba(248,244,239,.92);backdrop-filter:blur(16px);padding:1rem 4rem;border-bottom:1px solid rgba(200,120,106,.12)}
+    .nav-logo{display:flex;flex-direction:column;line-height:1;text-decoration:none}
+    .logo-main{font-family:var(--ff-display);font-size:1.6rem;font-weight:600;letter-spacing:.2em;color:var(--rose-dk)}
+    .logo-sub{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-60);margin-top:2px}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--ink);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:4px}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .3s}
+    .nav-links a:hover::after{width:100%}
+    .nav-links a:hover{color:var(--rose)}
+    .nav-cta{background:var(--rose);color:var(--white)!important;padding:.6rem 1.4rem;border-radius:2px}
+    .nav-cta::after{display:none!important}
+    .nav-cta:hover{background:var(--rose-dk)!important}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px}
+    .nav-hamburger span{width:22px;height:1.5px;background:var(--ink)}
+
+    /* PAGE HERO */
+    .page-hero{min-height:55vh;background:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 7rem 5rem;position:relative;overflow:hidden;padding-top:80px}
+    .page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&h=700&fit=crop') center/cover;opacity:.2}
+    .page-hero-content{position:relative;z-index:1;max-width:700px}
+    .page-hero-eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-lt);font-weight:500;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .3s var(--ease) forwards}
+    .page-hero-title{font-family:var(--ff-display);font-size:clamp(3rem,5vw,5.5rem);font-weight:300;color:var(--white);line-height:1.05;margin-bottom:1.5rem;opacity:0;animation:fadeUp .9s .5s var(--ease) forwards}
+    .page-hero-title em{font-style:italic;color:var(--rose-lt)}
+    .page-hero-sub{font-size:.88rem;color:rgba(248,244,239,.5);line-height:1.9;font-weight:300;opacity:0;animation:fadeUp .9s .7s var(--ease) forwards}
+
+    /* FILTER BAR */
+    .filter-bar{background:var(--white);padding:1.5rem 7rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--sand);position:sticky;top:80px;z-index:100;overflow-x:auto}
+    .filter-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ink-60);margin-right:.5rem;white-space:nowrap}
+    .filter-btn{padding:.5rem 1.2rem;border:1px solid var(--sand);background:transparent;font-family:var(--ff-body);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink-60);transition:all .25s;white-space:nowrap}
+    .filter-btn:hover,.filter-btn.active{background:var(--rose);color:var(--white);border-color:var(--rose)}
+
+    /* FEATURED */
+    .featured{padding:6rem 7rem;background:var(--white)}
+    .section-eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:1rem}
+    .section-title{font-family:var(--ff-display);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--ink);line-height:1.15}
+    .section-title em{font-style:italic;color:var(--rose)}
+    .section-line{width:40px;height:1px;background:var(--rose);margin:1.5rem 0 0}
+    /* hero grid */
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:1.5rem;margin-top:3.5rem}
+    .feat-item{position:relative;overflow:hidden}
+    .feat-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease)}
+    .feat-item:hover img{transform:scale(1.06)}
+    .feat-big{grid-row:span 2}
+    .feat-info{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,23,20,.8) 0%,transparent 55%);display:flex;align-items:flex-end;padding:2rem;opacity:0;transition:opacity .4s}
+    .feat-item:hover .feat-info{opacity:1}
+    .feat-tag{position:absolute;top:1.5rem;left:1.5rem;background:var(--rose);color:var(--white);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:.35rem .8rem}
+    .feat-label h4{font-family:var(--ff-display);font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:.3rem}
+    .feat-label p{font-size:.72rem;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase}
+
+    /* COLLECTIONS GRID */
+    .collections{padding:6rem 7rem;background:var(--cream)}
+    .coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+    .coll-card{background:var(--white);overflow:hidden;transition:box-shadow .3s,transform .3s}
+    .coll-card:hover{box-shadow:0 20px 50px rgba(26,23,20,.1);transform:translateY(-4px)}
+    .coll-img{position:relative;overflow:hidden;aspect-ratio:3/4}
+    .coll-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+    .coll-card:hover .coll-img img{transform:scale(1.05)}
+    .coll-badge{position:absolute;top:1rem;right:1rem;background:var(--rose);color:var(--white);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:.3rem .7rem}
+    .coll-body{padding:1.5rem}
+    .coll-name{font-family:var(--ff-display);font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:.4rem}
+    .coll-desc{font-size:.8rem;color:var(--ink-60);line-height:1.7;font-weight:300;margin-bottom:1.2rem}
+    .coll-link{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:var(--rose);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:gap .3s}
+    .coll-link:hover{gap:.9rem}
+
+    /* QUALITY STRIP */
+    .quality-strip{padding:5rem 7rem;background:var(--white);display:grid;grid-template-columns:repeat(4,1fr);gap:3rem}
+    .ql-item{text-align:center;padding:2rem 1rem;border:1px solid var(--sand);transition:border-color .3s,box-shadow .3s}
+    .ql-item:hover{border-color:var(--rose);box-shadow:0 8px 30px rgba(200,120,106,.1)}
+    .ql-icon{font-size:1.5rem;color:var(--rose);margin-bottom:1rem}
+    .ql-name{font-family:var(--ff-display);font-size:1.1rem;font-weight:400;color:var(--ink);margin-bottom:.5rem}
+    .ql-desc{font-size:.78rem;color:var(--ink-60);line-height:1.7;font-weight:300}
+
+    /* STATS */
+    .stats-band{background:var(--rose);padding:4rem 7rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+    .stat-val{font-family:var(--ff-display);font-size:3rem;font-weight:300;color:var(--white);line-height:1}
+    .stat-lbl{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:.4rem;font-weight:500}
+
+    /* CTA */
+    .cta-band{background:var(--ink);padding:5rem 7rem;display:flex;align-items:center;justify-content:space-between;gap:3rem}
+    .cta-band h2{font-family:var(--ff-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--white);line-height:1.2}
+    .cta-band h2 em{font-style:italic;color:var(--rose-lt)}
+    .cta-band p{font-size:.88rem;color:rgba(248,244,239,.45);margin-top:.5rem;font-weight:300}
+    .btn-rose{background:var(--rose);color:var(--white);padding:.9rem 2.5rem;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-family:var(--ff-body);font-weight:600;border:none;border-radius:2px;text-decoration:none;display:inline-block;transition:background .3s,transform .2s;white-space:nowrap}
+    .btn-rose:hover{background:var(--rose-dk);transform:translateY(-2px)}
+
+    /* FOOTER */
+    footer{background:var(--ink);padding:5rem 7rem 2rem}
+    .footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.06)}
+    .footer-tagline{font-size:.82rem;color:var(--ink-60);line-height:1.8;font-weight:300;margin:1.5rem 0 2rem}
+    .footer-social{display:flex;gap:1rem}
+    .footer-social a{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:var(--ink-60);font-size:.85rem;text-decoration:none;transition:border-color .3s,color .3s}
+    .footer-social a:hover{border-color:var(--rose);color:var(--rose)}
+    .footer-col h5{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-weight:600;color:var(--cream);margin-bottom:1.8rem}
+    .footer-col ul{list-style:none}
+    .footer-col li{margin-bottom:.9rem}
+    .footer-col a{font-size:.82rem;color:var(--ink-60);text-decoration:none;font-weight:300;transition:color .3s}
+    .footer-col a:hover{color:var(--rose)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;font-size:.72rem;color:rgba(107,99,96,.5)}
+    .fab-wrap{position:fixed;bottom:2rem;right:2rem;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:.7rem}
+    .fab-sub{display:flex;align-items:center;gap:.8rem;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s}
+    .fab-wrap:hover .fab-sub{opacity:1;pointer-events:all;transform:translateY(0)}
+    .fab-sub:nth-child(2){transition-delay:.05s}.fab-sub:nth-child(3){transition-delay:.1s}.fab-sub:nth-child(4){transition-delay:.15s}
+    .fab-label{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;background:var(--ink);color:var(--white);padding:.3rem .7rem;white-space:nowrap}
+    .fab-btn{width:48px;height:48px;border-radius:50%;background:var(--white);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;box-shadow:0 4px 16px rgba(26,23,20,.15);transition:background .3s,transform .2s}
+    .fab-btn:hover{background:var(--rose-lt);transform:scale(1.08)}
+    .fab-main{width:54px;height:54px;background:var(--rose)!important;color:var(--white)!important;font-size:1.2rem!important;box-shadow:0 6px 24px rgba(200,120,106,.4)!important}
+    .fab-main:hover{background:var(--rose-dk)!important;transform:scale(1.08) rotate(15deg)!important}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes kenBurns{from{transform:scale(1.04)}to{transform:scale(1.1)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}.reveal-delay-5{transition-delay:.5s}
+
+    @media(max-width:1100px){
+      nav,nav.scrolled{padding-left:2.5rem;padding-right:2.5rem}
+      .page-hero,.filter-bar,.featured,.collections,.quality-strip,.stats-band,.cta-band,footer{padding-left:3rem;padding-right:3rem}
+      .quality-strip{grid-template-columns:repeat(2,1fr)}
+      .footer-top{grid-template-columns:1fr 1fr;gap:3rem}
+    }
+    @media(max-width:768px){
+      nav,nav.scrolled{padding:1rem 2rem}
+      .nav-logo{flex-direction:row;align-items:center;gap:.5rem}
+      .logo-main{font-size:1.3rem}
+      .logo-sub{font-size:.5rem;margin-top:0}
+      .nav-links{display:none}.nav-hamburger{display:flex}
+      .nav-hamburger span{width:20px;height:1.5px}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:2.5rem;z-index:999;padding-top:4rem}
+      .nav-links.open a{font-size:1rem;padding:.75rem;min-height:44px;display:flex;align-items:center}
+      .page-hero{padding:5rem 1.5rem 3rem}
+      .filter-bar{padding:1rem 1.5rem}
+      .feat-grid{grid-template-columns:1fr}
+      .feat-big{grid-row:span 1}.feat-item{height:250px}
+      .featured,.collections,.quality-strip,.cta-band{padding:4rem 1.5rem}
+      .coll-grid{grid-template-columns:1fr}
+      .quality-strip{grid-template-columns:1fr;gap:1.5rem}
+      .stats-band{grid-template-columns:repeat(2,1fr);padding:3rem 1.5rem}
+      .cta-band{flex-direction:column;text-align:center;gap:1.5rem}
+      footer{padding:3rem 1.5rem 1.5rem}
+      .footer-top{grid-template-columns:1fr;gap:2rem}
+      .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;font-size:.85rem}
+    }
+    @media(max-width:480px){
+      nav,nav.scrolled{padding:.75rem 1rem}
+      .logo-main{font-size:1.1rem}
+      .logo-sub{font-size:.45rem}
+      .nav-hamburger span{width:18px}
+      .page-hero{padding:4rem 1rem 2rem}
+      .filter-bar{padding:.75rem 1rem;gap:.5rem}
+      .featured,.collections,.quality-strip{padding:2.5rem 1rem !important}
+      h2{font-size:1.8rem}
+      h3{font-size:1.2rem}
+      p{font-size:.9rem}
+      .stats-band{grid-template-columns:repeat(2,1fr);padding:2rem 1rem}
+      .footer-top{gap:1.5rem}
+      .footer-bottom{gap:.3rem;font-size:.8rem}
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo"><span class="logo-main">AVINYA</span><span class="logo-sub">Designers</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html" class="nav-cta">Book a Consult</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow"><i class="fas fa-circle" style="font-size:.4rem;margin-right:.5rem"></i> Exclusive Design Portfolio</p>
+      <h1 class="page-hero-title">Our <em>Collections</em></h1>
+      <p class="page-hero-sub">Every piece is a work of art — handcrafted with intention, worn with confidence.</p>
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter by:</span>
+    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-btn" onclick="setFilter(this,'bridal')">Bridal</button>
+    <button class="filter-btn" onclick="setFilter(this,'casual')">Casual</button>
+    <button class="filter-btn" onclick="setFilter(this,'professional')">Professional</button>
+    <button class="filter-btn" onclick="setFilter(this,'festival')">Festival</button>
+    <button class="filter-btn" onclick="setFilter(this,'evening')">Evening</button>
+    <button class="filter-btn" onclick="setFilter(this,'custom')">Custom</button>
+  </div>
+
+  <section class="featured">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <p class="section-eyebrow" style="text-align:center">Spotlight</p>
+      <h2 class="section-title" style="text-align:center">Featured <em>Collections</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 0"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item feat-big reveal" style="height:580px" data-cat="bridal">
+        <span class="feat-tag">Signature</span>
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=700&h=900&fit=crop" alt="Bridal">
+        <div class="feat-info"><div class="feat-label"><h4>Bridal Elegance</h4><p>Timeless bridal couture</p></div></div>
+      </div>
+      <div class="feat-item reveal reveal-delay-1" style="height:280px" data-cat="casual">
+        <img src="https://images.unsplash.com/photo-1606518451065-d3e5fc92d4df?w=600&h=400&fit=crop" alt="Casual">
+        <div class="feat-info"><div class="feat-label"><h4>Contemporary Casual</h4><p>Modern everyday elegance</p></div></div>
+      </div>
+      <div class="feat-item reveal reveal-delay-2" style="height:280px" data-cat="professional">
+        <img src="https://images.unsplash.com/photo-1591521201021-828d50d54d56?w=600&h=400&fit=crop" alt="Professional">
+        <div class="feat-info"><div class="feat-label"><h4>Professional Wear</h4><p>Power dressing, perfected</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collections">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <p class="section-eyebrow" style="text-align:center">Portfolio</p>
+      <h2 class="section-title" style="text-align:center">All <em>Collections</em></h2>
+      <div class="section-line" style="margin:1.5rem auto 0"></div>
+    </div>
+    <div class="coll-grid" id="collGrid">
+      <div class="coll-card reveal" data-cat="evening">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1583394838336-acd977479ee7?w=500&h=650&fit=crop" alt="Evening"><span class="coll-badge">Popular</span></div>
+        <div class="coll-body"><h3 class="coll-name">Evening Elegance</h3><p class="coll-desc">Luxurious designs for memorable nights and grand celebrations.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+      <div class="coll-card reveal reveal-delay-1" data-cat="festival">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1515623572083-0e2a6c1c1c2e?w=500&h=650&fit=crop&crop=center" alt="Festival"></div>
+        <div class="coll-body"><h3 class="coll-name">Festival Collection</h3><p class="coll-desc">Vibrant traditional designs reimagined for the modern celebration.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+      <div class="coll-card reveal reveal-delay-2" data-cat="custom">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=650&fit=crop" alt="Custom"><span class="coll-badge">New</span></div>
+        <div class="coll-body"><h3 class="coll-name">Custom Creations</h3><p class="coll-desc">Truly one-of-a-kind pieces designed exclusively around you.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+      <div class="coll-card reveal" data-cat="casual">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=650&fit=crop" alt="Minimal"><span class="coll-badge">New</span></div>
+        <div class="coll-body"><h3 class="coll-name">Minimalist Chic</h3><p class="coll-desc">Elegant simplicity meets modern style — effortless and refined.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+      <div class="coll-card reveal reveal-delay-1" data-cat="festival">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1564377511019-d81ca3ec64d8?w=500&h=650&fit=crop" alt="Fusion"></div>
+        <div class="coll-body"><h3 class="coll-name">Fusion Tradition</h3><p class="coll-desc">Cultural heritage and contemporary flair in beautiful harmony.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+      <div class="coll-card reveal reveal-delay-2" data-cat="bridal">
+        <div class="coll-img"><img src="https://images.unsplash.com/photo-1572804419506-e3b6fdb1baef?w=500&h=650&fit=crop" alt="Luxe"><span class="coll-badge">New</span></div>
+        <div class="coll-body"><h3 class="coll-name">Luxe Minimal</h3><p class="coll-desc">Premium quality with understated elegance — for the discerning bride.</p><a href="contact.html" class="coll-link">Inquire Now <i class="fas fa-arrow-right" style="font-size:.6rem"></i></a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quality-strip reveal">
+    <div class="ql-item"><div class="ql-icon"><i class="fas fa-sparkles"></i></div><h3 class="ql-name">Premium Fabrics</h3><p class="ql-desc">Sourced from the finest suppliers for a luxurious look and feel.</p></div>
+    <div class="ql-item"><div class="ql-icon"><i class="fas fa-pencil-ruler"></i></div><h3 class="ql-name">Expert Craftsmanship</h3><p class="ql-desc">Each design meticulously crafted with attention to every detail.</p></div>
+    <div class="ql-item"><div class="ql-icon"><i class="fas fa-palette"></i></div><h3 class="ql-name">Color Harmony</h3><p class="ql-desc">Curated palettes to complement every skin tone and preference.</p></div>
+    <div class="ql-item"><div class="ql-icon"><i class="fas fa-check-circle"></i></div><h3 class="ql-name">Quality Assured</h3><p class="ql-desc">Rigorous quality checks on every piece before delivery.</p></div>
+  </div>
+
+  <div class="stats-band">
+    <div><div class="stat-val">150+</div><p class="stat-lbl">Unique Designs</p></div>
+    <div><div class="stat-val">1000+</div><p class="stat-lbl">Happy Customers</p></div>
+    <div><div class="stat-val">15+</div><p class="stat-lbl">Fashion Shows</p></div>
+    <div><div class="stat-val">98%</div><p class="stat-lbl">Satisfaction Rate</p></div>
+  </div>
+
+  <div class="cta-band reveal">
+    <div><h2>Ready to Own a Piece of <em>Art?</em></h2><p>Each design is a masterpiece waiting for its perfect wearer.</p></div>
+    <a href="contact.html" class="btn-rose">Order Your Design</a>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div><a href="index.html" class="nav-logo" style="text-decoration:none"><span class="logo-main">AVINYA</span><span class="logo-sub">Designers</span></a><p class="footer-tagline">Crafting minimal luxury fashion for the modern woman.</p><div class="footer-social"><a href="https://www.instagram.com/avinya_designers" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/918675337366" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="mailto:designersavinya@gmail.com"><i class="fas fa-envelope"></i></a></div></div>
+      <div class="footer-col"><h5>Navigation</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Collections</h5><ul><li><a href="#">Bridal Couture</a></li><li><a href="#">Festival Wear</a></li><li><a href="#">Evening Elegance</a></li><li><a href="#">Professional Wear</a></li><li><a href="#">Custom Creations</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+918675337366">+91 86753 37366</a></li><li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li><li><a href="#">Mon–Sat, 10AM–6PM</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Avinya Designers. All rights reserved.</span><span>Designed with care for discerning women everywhere.</span></div>
+  </footer>
+
+  <div class="fab-wrap">
+    <div class="fab-sub"><span class="fab-label">Instagram</span><a href="https://www.instagram.com/avinya_designers" class="fab-btn" target="_blank"><i class="fab fa-instagram"></i></a></div>
+    <div class="fab-sub"><span class="fab-label">WhatsApp</span><a href="https://wa.me/918675337366" class="fab-btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+    <div class="fab-sub"><span class="fab-label">Call Us</span><a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a></div>
+    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <script>
+    window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+    function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+    function setFilter(btn,cat){
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('[data-cat]').forEach(c=>{
+        if(cat==='all'||c.dataset.cat===cat){c.style.display='';c.style.opacity='1';}
+        else{c.style.opacity='0.2';}
+      });
+    }
+  </script>
+</body>
+</html>
