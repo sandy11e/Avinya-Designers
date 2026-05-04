@@ -66,6 +66,17 @@
       display: flex; flex-direction: column; line-height: 1;
       text-decoration: none;
     }
+    .nav-logo-mark {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .nav-logo-mark img {
+      width: 46px;
+      height: 46px;
+      display: block;
+      object-fit: contain;
+    }
     .logo-main {
       font-family: var(--ff-display);
       font-size: 1.6rem; font-weight: 600;
@@ -1223,7 +1234,8 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo nav-logo-mark">
+      <img src="images/logo.png" alt="Avinya Designers logo">
       <span class="logo-main">AVINYA</span>
       <span class="logo-sub">Designers</span>
     </a>
