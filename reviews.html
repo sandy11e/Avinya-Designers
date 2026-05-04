@@ -43,6 +43,7 @@
       color: var(--ink);
       overflow-x: hidden;
     }
+    body.nav-open{overflow:hidden;height:100%}
 
     /* ── NAV ── */
     nav {
@@ -615,7 +616,7 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-hamburger span { width: 20px; height: 1.5px; }
-      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); align-items: center; justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); align-items: center; justify-content: center; gap: 2.5rem; z-index: 1001; padding-top: 4rem; }
       .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
       .page-hero { padding: 7rem 1.5rem 3rem; min-height: 40vh; }
       .page-header { min-height: 30vh; padding-top: 5rem; }
@@ -649,6 +650,7 @@
       h3 { font-size: 1.1rem; }
       p { font-size: 0.9rem; }
       .testimonial-card { padding: 1rem; }
+      .testi-card::before { font-size: 3.8rem; right: 1rem; top: 0.6rem; }
       .stats-strip { grid-template-columns: 1fr; }
       .stat-block { border-right: none; border-bottom: 1px solid rgba(26,23,20,0.1); }
       .video-card { padding: 1rem; }
@@ -1104,8 +1106,18 @@
 
     // Mobile nav
     function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
     }
+    // Close mobile nav when a nav link is clicked
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t.closest && t.closest('.nav-links') && t.tagName === 'A'){
+        const nav = document.getElementById('navLinks');
+        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); }
+      }
+    });
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');

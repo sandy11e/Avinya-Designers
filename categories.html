@@ -37,6 +37,7 @@
 
     html { scroll-behavior: smooth; }
     body { font-family: var(--ff-body); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body.nav-open{overflow:hidden;height:100%}
 
    
     /* ── NAV ── */
@@ -827,7 +828,18 @@
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
 
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    function toggleNav() { 
+      const nav = document.getElementById('navLinks');
+      const isOpen = nav.classList.toggle('open');
+      document.body.classList.toggle('nav-open', isOpen);
+    }
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if(t.closest && t.closest('.nav-links') && t.tagName === 'A'){
+        const nav = document.getElementById('navLinks');
+        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); }
+      }
+    });
 
     const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {

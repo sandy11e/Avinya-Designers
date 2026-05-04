@@ -50,72 +50,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 const contactForm = document.getElementById('contactForm');
 
-// Create contact modal (hidden by default)
-function createContactModal() {
-    if (document.querySelector('.contact-modal-backdrop')) return;
-    const backdrop = document.createElement('div');
-    backdrop.className = 'contact-modal-backdrop';
-    const modal = document.createElement('div');
-    modal.className = 'contact-modal';
-    modal.innerHTML = `
-        <h3>How would you like to send this message?</h3>
-        <p>Choose one of the options below — Email, WhatsApp, or Phone call.</p>
-        <div class="modal-actions">
-            <button class="btn-email">Send via Email</button>
-            <button class="btn-wa">Send via WhatsApp</button>
-            <button class="btn-call">Request a Call</button>
-            <button class="btn-cancel">Cancel</button>
-        </div>
-    `;
-    backdrop.appendChild(modal);
-    document.body.appendChild(backdrop);
-
-    // Handlers
-    backdrop.querySelector('.btn-cancel').addEventListener('click', () => { backdrop.style.display = 'none'; });
-    backdrop.querySelector('.btn-email').addEventListener('click', () => handleSend('email'));
-    backdrop.querySelector('.btn-wa').addEventListener('click', () => handleSend('whatsapp'));
-    backdrop.querySelector('.btn-call').addEventListener('click', () => handleSend('call'));
-}
-
-function handleSend(method) {
-    const backdrop = document.querySelector('.contact-modal-backdrop');
-    if (!contactForm) return;
-    const name = contactForm.querySelector('#name').value.trim();
-    const email = contactForm.querySelector('#email').value.trim();
-    const phone = contactForm.querySelector('#phone').value.trim();
-    const category = contactForm.querySelector('#category').value;
-    const deadline = contactForm.querySelector('#deadline').value;
-    const budget = contactForm.querySelector('#budget').value;
-    const message = contactForm.querySelector('#message').value.trim();
-
-    const composed = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCategory: ${category}\nDeadline: ${deadline}\nBudget: ${budget}\n\nMessage:\n${message}`;
-
-    if (method === 'email') {
-        const mailto = `mailto:designersavinya@gmail.com?subject=${encodeURIComponent('Website inquiry from ' + name)}&body=${encodeURIComponent(composed)}`;
-        window.location.href = mailto;
-    } else if (method === 'whatsapp') {
-        const phoneNumber = '918675337366';
-        const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent('Hello, I am ' + name + '. %0A%0A' + message)}`;
-        window.open(waUrl, '_blank');
-    } else if (method === 'call') {
-        // Open dialer
-        window.location.href = 'tel:+918675337366';
-    }
-
-    // hide modal
-    if (backdrop) backdrop.style.display = 'none';
-}
-
 if (contactForm) {
-    createContactModal();
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const name = this.querySelector('#name').value.trim();
         const email = this.querySelector('#email').value.trim();
+        const phone = this.querySelector('#phone').value.trim();
+        const category = this.querySelector('#category').value;
+        const deadline = this.querySelector('#deadline').value;
+        const budget = this.querySelector('#budget').value;
         const message = this.querySelector('#message').value.trim();
 
-        if (!name || !email || !message) {
+        if (!name || !email || !phone || !category || !message) {
             showNotification('Please fill out all required fields', 'error');
             return;
         }
@@ -125,11 +72,20 @@ if (contactForm) {
             return;
         }
 
-        // show send-method modal
-        const backdrop = document.querySelector('.contact-modal-backdrop');
-        if (backdrop) {
-            backdrop.style.display = 'flex';
-        }
+        const composed = [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Phone: ${phone}`,
+            `Category: ${category}`,
+            deadline ? `Required By: ${deadline}` : null,
+            budget ? `Budget: ${budget}` : null,
+            '',
+            `Message:`,
+            message,
+        ].filter(Boolean).join('\n');
+
+        const waUrl = `https://wa.me/918675337366?text=${encodeURIComponent(`Hello, I am ${name}.\n\n${composed}`)}`;
+        window.location.href = waUrl;
     });
 }
 

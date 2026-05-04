@@ -372,21 +372,21 @@
         <div class="form-row">
           <div class="form-field">
             <label>First Name *</label>
-            <input id="name" type="text" placeholder="Priya">
+            <input id="name" type="text" placeholder="First Name">
           </div>
           <div class="form-field">
             <label>Last Name</label>
-            <input id="lastname" type="text" placeholder="Kumar">
+            <input id="lastname" type="text" placeholder="Last Name">
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label>Email Address *</label>
-            <input id="email" type="email" placeholder="priya@email.com">
+            <input id="email" type="email" placeholder="xxxxxx@email.com">
           </div>
           <div class="form-field">
             <label>Phone / WhatsApp *</label>
-            <input id="phone" type="tel" placeholder="+91 98765 43210">
+            <input id="phone" type="tel" placeholder="+91 xxxxx xxxxx">
           </div>
         </div>
         <div class="form-row">
@@ -602,9 +602,21 @@
 
   <script>
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60));
-    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    function toggleNav() { 
+      const nav = document.getElementById('navLinks');
+      const isOpen = nav.classList.toggle('open');
+      document.body.classList.toggle('nav-open', isOpen);
+    }
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if(t.closest && t.closest('.nav-links') && t.tagName === 'A'){
+        const nav = document.getElementById('navLinks');
+        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); }
+      }
+    });
     const obs = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
   </script>
+  <script src="js/script.js"></script>
 </body>
 </html>

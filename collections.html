@@ -22,6 +22,7 @@
     :root{--rose:#C8786A;--rose-dk:#A85E51;--rose-lt:#EDD5CF;--cream:#F8F4EF;--sand:#EDE8E1;--ink:#1A1714;--ink-60:#6B6360;--gold:#C9A86C;--white:#FEFDFB;--ff-display:'Cormorant Garamond',Georgia,serif;--ff-body:'Manrope',sans-serif;--ease:cubic-bezier(0.25,0.46,0.45,0.94)}
     html{scroll-behavior:smooth}
     body{font-family:var(--ff-body);background:var(--cream);color:var(--ink);overflow-x:hidden}
+    body.nav-open{overflow:hidden;height:100%}
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s}
     nav.scrolled{background:rgba(248,244,239,.92);backdrop-filter:blur(16px);padding:1rem 4rem;border-bottom:1px solid rgba(200,120,106,.12)}
     .nav-logo{display:flex;flex-direction:column;line-height:1;text-decoration:none}
@@ -149,7 +150,7 @@
       .logo-sub{font-size:.5rem;margin-top:0}
       .nav-links{display:none}.nav-hamburger{display:flex}
       .nav-hamburger span{width:20px;height:1.5px}
-      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:2.5rem;z-index:999;padding-top:4rem}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:2.5rem;z-index:1001;padding-top:4rem}
       .nav-links.open a{font-size:1rem;padding:.75rem;min-height:44px;display:flex;align-items:center}
       .page-hero{padding:5rem 1.5rem 3rem}
       .filter-bar{padding:1rem 1.5rem}
@@ -222,16 +223,7 @@
     </div>
   </section>
 
-  <div class="filter-bar">
-    <span class="filter-label">Filter by:</span>
-    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
-    <button class="filter-btn" onclick="setFilter(this,'bridal')">Bridal</button>
-    <button class="filter-btn" onclick="setFilter(this,'casual')">Casual</button>
-    <button class="filter-btn" onclick="setFilter(this,'professional')">Professional</button>
-    <button class="filter-btn" onclick="setFilter(this,'festival')">Festival</button>
-    <button class="filter-btn" onclick="setFilter(this,'evening')">Evening</button>
-    <button class="filter-btn" onclick="setFilter(this,'custom')">Custom</button>
-  </div>
+  <!-- Filter removed per request -->
 
   <section class="featured">
     <div class="reveal" style="text-align:center;margin-bottom:0">
@@ -328,17 +320,21 @@
 
   <script>
     window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
-    function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+    function toggleNav(){
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    }
+    // Close mobile nav when any nav link is clicked
+    document.addEventListener('click', (e)=>{
+      const target = e.target;
+      if(target.closest && target.closest('.nav-links') && target.tagName === 'A'){
+        const nav = document.getElementById('navLinks');
+        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); }
+      }
+    });
     const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-    function setFilter(btn,cat){
-      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('[data-cat]').forEach(c=>{
-        if(cat==='all'||c.dataset.cat===cat){c.style.display='';c.style.opacity='1';}
-        else{c.style.opacity='0.2';}
-      });
-    }
   </script>
 </body>
 </html>
