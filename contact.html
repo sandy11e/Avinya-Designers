@@ -103,7 +103,7 @@
       width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--sand);
       background: var(--cream); font-family: var(--ff-body); font-size: 0.85rem;
       color: var(--ink); transition: border-color 0.3s, box-shadow 0.3s;
-      outline: none; border-radius: 0; -webkit-appearance: none;
+      outline: none; border-radius: 0; appearance: none; -webkit-appearance: none;
     }
     .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(200,120,106,0.08); }
     .form-field textarea { resize: vertical; min-height: 110px; }
@@ -114,7 +114,6 @@
     .form-submit:hover { background: var(--rose-dk); transform: translateY(-1px); }
 
     /* INFO SIDE */
-    .info-wrap {}
     .info-section-header { text-align: left; margin-bottom: 3rem; }
     .info-section-header .section-line { margin-left: 0; }
     .info-items { display: flex; flex-direction: column; gap: 0; margin-bottom: 3rem; }
@@ -198,7 +197,12 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
     @media (max-width: 768px) {
-      nav, nav.scrolled { padding: 1rem 2rem; }
+      nav, nav.scrolled {
+        padding: 1rem 2rem;
+        background: rgba(248, 244, 239, 0.97);
+        border-bottom: 1px solid rgba(168, 94, 81, 0.18);
+        backdrop-filter: blur(14px);
+      }
       .nav-logo { flex-direction: row; align-items: center; gap: 0.5rem; }
       .logo-main { font-size: 1.3rem; }
       .logo-sub { font-size: 0.5rem; margin-top: 0; }
@@ -223,9 +227,15 @@
       footer { padding: 3rem 1.5rem 1.5rem; }
       .footer-top { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; font-size: 0.85rem; }
+      .fab-wrap { display: none; }
     }
     @media (max-width: 480px) {
-      nav, nav.scrolled { padding: 0.75rem 1rem; }
+      nav, nav.scrolled {
+        padding: 0.75rem 1rem;
+        background: rgba(248, 244, 239, 0.98);
+        border-bottom: 1px solid rgba(168, 94, 81, 0.22);
+        backdrop-filter: blur(12px);
+      }
       .logo-main { font-size: 1.1rem; }
       .logo-sub { font-size: 0.45rem; }
       .nav-hamburger span { width: 18px; }
@@ -243,6 +253,7 @@
       .map-header { padding: 1.5rem 1rem; }
       .footer-top { gap: 1.5rem; }
       .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
+      .fab-wrap { display: none; }
     }
   </style>
   <script type="application/ld+json">
