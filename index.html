@@ -1103,6 +1103,11 @@
       }
       .btn-ghost i { color: #fff; }
       .btn-primary, .btn-ghost { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+      .hero-stats .stat-val,
+      .hero-stats .stat-label {
+        color: var(--ink);
+        text-shadow: none;
+      }
       .hero-tag {
         bottom: 1rem; right: 1rem;
         left: 1rem; padding: 0.85rem 1rem;
@@ -1170,6 +1175,12 @@
       .stat-val,
       .stat-label {
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.38);
+      }
+      /* Force hero stats to black on very small screens */
+      .hero-stats .stat-val,
+      .hero-stats .stat-label {
+        color: var(--ink);
+        text-shadow: none;
       }
       .hero-left { padding: 4.5rem 1rem 2rem; }
       .hero-title { font-size: 1.5rem; }
