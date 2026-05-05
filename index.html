@@ -1048,25 +1048,33 @@
         border-color: transparent;
         color: var(--white) !important;
       }
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right {
-        height: min(78vw, 420px); min-height: 320px;
-        margin: 0 1.5rem 1.25rem;
-        border-radius: 28px;
-        box-shadow: 0 24px 50px rgba(26, 23, 20, 0.12);
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        position: relative;
+        isolation: isolate;
       }
-      .hero-right img { object-position: center 18%; }
-      .hero-right::after {
-        background: linear-gradient(180deg, rgba(26,23,20,0.18) 0%, rgba(26,23,20,0.02) 32%, rgba(248,244,239,0.22) 100%);
-      }
-      .hero-right::before {
+      .hero::before {
         content: '';
-        position: absolute; inset: 12px;
-        border-radius: 22px;
-        border: 1px solid rgba(254,253,251,0.55);
-        pointer-events: none;
-        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 52vh;
+        background: url('https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=900&h=1200&fit=crop&crop=top') center 20% / cover no-repeat;
+        z-index: -2;
       }
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 52vh;
+        background: linear-gradient(180deg, rgba(26,23,20,0.45) 0%, rgba(26,23,20,0.15) 38%, rgba(248,244,239,0.94) 100%);
+        z-index: -1;
+      }
+      .hero-right { display: none; }
       .hero-left { padding: 5.5rem 1.5rem 2rem; }
       .hero-title { font-size: 2rem; line-height: 1.2; }
       .hero-desc { font-size: 0.85rem; }
@@ -1129,6 +1137,10 @@
         border-radius: 12px;
       }
       .hero { min-height: auto; padding-top: 3.25rem; }
+      .hero::before,
+      .hero::after {
+        height: 48vh;
+      }
       .hero-left { padding: 4.5rem 1rem 2rem; }
       .hero-title { font-size: 1.5rem; }
       .hero-desc { font-size: 0.8rem; }
@@ -1144,12 +1156,6 @@
       .footer-top { gap: 1.5rem; }
       .footer-bottom { gap: 0.3rem; font-size: 0.8rem; }
       .contact-strip { padding: 2.5rem 1rem !important; gap: 1.5rem; }
-      .hero-right {
-        height: 72vw; min-height: 300px;
-        margin: 0 1rem 1rem;
-        border-radius: 24px;
-      }
-      .hero-right img { object-position: center 15%; }
       .hero-tag {
         left: 0.75rem; right: 0.75rem; bottom: 0.75rem;
         padding: 0.7rem 0.85rem; border-radius: 16px;
