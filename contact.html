@@ -214,8 +214,10 @@
       .nav-links { display: none; }
       .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgba(168, 94, 81, 0.16); border-radius: 999px; background: rgba(254, 253, 251, 0.9); }
       .nav-hamburger span { width: 18px; height: 1.5px; background: var(--rose-dk); }
-      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); align-items: center; justify-content: center; gap: 2.5rem; z-index: 999; padding-top: 4rem; }
-      .nav-links.open a { font-size: 1rem; padding: 0.75rem; min-height: 44px; display: flex; align-items: center; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: calc(100% + 0.75rem); left: 1rem; right: 1rem; background: rgba(248,244,239,0.98); align-items: stretch; justify-content: flex-start; gap: 0.7rem; z-index: 1100; padding: 0.9rem; border: 1px solid rgba(168,94,81,0.14); border-radius: 18px; box-shadow: 0 18px 40px rgba(26,23,20,0.12); max-height: calc(100vh - 7rem); overflow-y: auto; }
+      .nav-links.open li { width: 100%; display: flex; }
+      .nav-links.open a { width: 100%; font-size: 0.95rem; padding: 0.9rem 1rem; min-height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.8); border: 1px solid rgba(168,94,81,0.10); border-radius: 12px; box-shadow: 0 4px 12px rgba(26,23,20,0.03); }
+      .nav-links.open .nav-cta { background: var(--rose); border-color: transparent; color: var(--white) !important; }
       .page-hero { padding: 5rem 1.5rem 3rem; min-height: 40vh; }
       .page-hero-breadcrumb { display: none; }
       .quick-channels, .response-section { padding: 4rem 1.5rem; }
@@ -611,14 +613,16 @@
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60));
     function toggleNav() { 
       const nav = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburger');
       const isOpen = nav.classList.toggle('open');
       document.body.classList.toggle('nav-open', isOpen);
+      if (hamburger) hamburger.setAttribute('aria-expanded', String(isOpen));
     }
     document.addEventListener('click', (e) => {
       const t = e.target;
       if(t.closest && t.closest('.nav-links') && t.tagName === 'A'){
         const nav = document.getElementById('navLinks');
-        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); }
+        if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); const hamburger = document.getElementById('hamburger'); if (hamburger) hamburger.setAttribute('aria-expanded', 'false'); }
       }
     });
     const obs = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), { threshold: 0.12 });
