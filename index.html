@@ -1689,7 +1689,11 @@
       <span class="fab-label">Call Us</span>
       <a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a>
     </div>
-    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+    <div class="fab-sub">
+      <span class="fab-label">Mail Us</span>
+      <a href="mailto:designersavinya@gmail.com" class="fab-btn"><i class="fas fa-envelope"></i></a>
+    </div>
+    <a href="#" class="fab-btn fab-main" aria-label="Quick Actions"><i class="fas fa-envelope"></i></a>
   </div>
 
   <script>
@@ -1719,10 +1723,26 @@
     // FAB Touch Handler for Mobile
     const fabWrap = document.querySelector('.fab-wrap');
     if (fabWrap) {
+      const fabMain = fabWrap.querySelector('.fab-main');
+      const fabOptions = fabWrap.querySelectorAll('.fab-sub .fab-btn');
+
+      if (fabMain) {
+        fabMain.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            fabWrap.classList.toggle('active');
+          }
+        });
+      }
+
+      fabOptions.forEach((btn) => {
+        btn.addEventListener('click', () => fabWrap.classList.remove('active'));
+      });
+
       fabWrap.addEventListener('click', (e) => {
         if (e.target.closest('.fab-main')) {
-          fabWrap.classList.remove('active');
-        } else if (e.target.closest('.fab-btn')) {
+          return;
+        } else if (e.target.closest('.fab-sub .fab-btn')) {
           fabWrap.classList.remove('active');
         } else {
           fabWrap.classList.toggle('active');

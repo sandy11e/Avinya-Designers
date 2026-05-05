@@ -425,6 +425,13 @@
       .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
     }
     @media (max-width: 768px) {
+      .fab-wrap { bottom: 1.5rem; right: 1.5rem; gap: 0.5rem; }
+      .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
+      .fab-main { width: 50px; height: 50px; font-size: 1.1rem; }
+      .fab-label { font-size: 0.6rem; padding: 0.25rem 0.6rem; }
+      .fab-sub { display: none !important; }
+      .fab-wrap.active .fab-sub { display: flex !important; opacity: 1 !important; pointer-events: all !important; transform: translateY(0) !important; }
+
       nav, nav.scrolled {
         padding: 0.9rem 1.2rem;
         background: rgba(248, 244, 239, 0.98);
@@ -458,6 +465,10 @@
       .category-item, .service-card, .price-card { min-height: auto; }
     }
     @media (max-width: 480px) {
+      .fab-wrap { bottom: 1rem; right: 1rem; }
+      .fab-btn { width: 40px; height: 40px; font-size: 0.9rem; }
+      .fab-main { width: 46px; height: 46px; font-size: 1rem; }
+
       nav, nav.scrolled { padding: 0.7rem 1rem; background: rgba(248, 244, 239, 0.99); border-bottom: 1px solid rgba(168, 94, 81, 0.22); }
       .nav-logo-mark img { width: 32px; height: 32px; }
       .logo-main { font-size: 1.05rem; }
@@ -814,7 +825,11 @@
       <span class="fab-label">Call Us</span>
       <a href="tel:+918675337366" class="fab-btn"><i class="fas fa-phone"></i></a>
     </div>
-    <a href="contact.html" class="fab-btn fab-main"><i class="fas fa-envelope"></i></a>
+    <div class="fab-sub">
+      <span class="fab-label">Mail Us</span>
+      <a href="mailto:designersavinya@gmail.com" class="fab-btn"><i class="fas fa-envelope"></i></a>
+    </div>
+    <a href="#" class="fab-btn fab-main" aria-label="Quick Actions"><i class="fas fa-envelope"></i></a>
   </div>
 
   <script>
@@ -854,6 +869,29 @@
         if(nav && nav.classList.contains('open')){ nav.classList.remove('open'); document.body.classList.remove('nav-open'); const hamburger = document.getElementById('hamburger'); if (hamburger) hamburger.setAttribute('aria-expanded', 'false'); }
       }
     });
+
+    const fabWrap = document.querySelector('.fab-wrap');
+    if (fabWrap) {
+      const fabMain = fabWrap.querySelector('.fab-main');
+      const fabOptions = fabWrap.querySelectorAll('.fab-sub .fab-btn');
+
+      if (fabMain) {
+        fabMain.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            fabWrap.classList.toggle('active');
+          }
+        });
+      }
+
+      fabOptions.forEach((btn) => {
+        btn.addEventListener('click', () => fabWrap.classList.remove('active'));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!fabWrap.contains(e.target)) fabWrap.classList.remove('active');
+      });
+    }
 
     const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
