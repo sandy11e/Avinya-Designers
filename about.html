@@ -265,13 +265,19 @@
       .footer-top{grid-template-columns:1fr 1fr;gap:3rem}
     }
     @media(max-width:768px){
-      nav{padding:1rem 2rem} nav.scrolled{padding:.8rem 2rem}
-      .nav-logo{flex-direction:row;align-items:center;gap:.5rem}
+      nav, nav.scrolled{
+        padding:0.9rem 1.2rem;
+        background:rgba(248,244,239,.98);
+        backdrop-filter:blur(14px);
+        border-bottom:1px solid rgba(168,94,81,.18);
+        box-shadow:0 8px 24px rgba(26,23,20,.04)
+      }
+      .nav-logo{flex-direction:row;align-items:center;gap:.45rem}
       .nav-logo-mark img { width:38px;height:38px; }
-      .logo-main{font-size:1.3rem}
-      .logo-sub{font-size:.5rem;margin-top:0}
-      .nav-links{display:none} .nav-hamburger{display:flex}
-      .nav-hamburger span{width:20px;height:1.5px}
+      .logo-main{font-size:1.2rem;letter-spacing:.16em}
+      .logo-sub{font-size:.48rem;margin-top:0;letter-spacing:.28em}
+      .nav-links{display:none} .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(168,94,81,.16);border-radius:999px;background:rgba(254,253,251,.9)}
+      .nav-hamburger span{width:18px;height:1.5px;background:var(--rose-dk)}
       .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--cream);align-items:center;justify-content:center;gap:2.5rem;z-index:1001;padding-top:4rem}
       .nav-links.open a{font-size:1rem;padding:.75rem;min-height:44px;display:flex;align-items:center}
       .page-hero{grid-template-columns:1fr;min-height:45vh}
@@ -292,11 +298,16 @@
       .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;font-size:.85rem}
     }
     @media(max-width:480px){
-      nav{padding:.75rem 1rem} nav.scrolled{padding:.6rem 1rem}
+      nav, nav.scrolled{
+        padding:.7rem 1rem;
+        background:rgba(248,244,239,.99);
+        border-bottom:1px solid rgba(168,94,81,.22)
+      }
       .nav-logo-mark img { width:32px;height:32px; }
-      .logo-main{font-size:1.1rem}
-      .logo-sub{font-size:.45rem}
-      .nav-hamburger span{width:18px}
+      .logo-main{font-size:1.05rem}
+      .logo-sub{font-size:.42rem}
+      .nav-hamburger{width:42px;height:42px}
+      .nav-hamburger span{width:16px}
       .page-hero{min-height:auto;padding-top:3.5rem}
       .page-hero-left{padding:3.5rem 1rem 2rem}
       .page-hero-title{font-size:1.5rem}
