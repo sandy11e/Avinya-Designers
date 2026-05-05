@@ -48,9 +48,9 @@
     .nav-cta::after { display:none!important; }
     .nav-hamburger { display:none;flex-direction:column;gap:5px; }
     .nav-hamburger span { width:22px;height:1.5px;background:var(--ink);transition:all .3s ease; }
-    .nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(0,6px)}
+    .nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
     .nav-hamburger.active span:nth-child(2){opacity:0}
-    .nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(0,-6px)}
+    .nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
 
     /* PAGE HERO */
     .page-hero {
@@ -286,9 +286,9 @@
       .nav-logo-mark img { width:38px;height:38px; }
       .logo-main{font-size:1.2rem;letter-spacing:.16em}
       .logo-sub{font-size:.48rem;margin-top:0;letter-spacing:.28em}
-      .nav-links{display:none;transition:all .3s ease;opacity:0;visibility:hidden;transform:translateY(-20px);pointer-events:none} .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(168,94,81,.16);border-radius:999px;background:rgba(254,253,251,.9)}
+      .nav-links{display:none;transition:all .3s ease;transform:translateY(-20px);opacity:0;pointer-events:none} .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(168,94,81,.16);border-radius:999px;background:rgba(254,253,251,.9)}
       .nav-hamburger span{width:18px;height:1.5px;background:var(--rose-dk)}
-      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:calc(100% + .75rem);left:1rem;right:1rem;background:rgba(248,244,239,.98);align-items:stretch;justify-content:flex-start;gap:.7rem;z-index:1100;padding:.9rem;border:1px solid rgba(168,94,81,.14);border-radius:18px;box-shadow:0 18px 40px rgba(26,23,20,.12);max-height:calc(100vh - 7rem);overflow-y:auto;opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:calc(100% + .75rem);left:1rem;right:1rem;background:rgba(248,244,239,.98);align-items:stretch;justify-content:flex-start;gap:.7rem;z-index:1100;padding:.9rem;border:1px solid rgba(168,94,81,.14);border-radius:18px;box-shadow:0 18px 40px rgba(26,23,20,.12);max-height:calc(100vh - 7rem);overflow-y:auto;transform:translateY(0);opacity:1;pointer-events:auto}
       .nav-links.open li{width:100%;display:flex}
       .nav-links.open a{width:100%;font-size:.95rem;padding:.9rem 1rem;min-height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.8);border:1px solid rgba(168,94,81,.1);border-radius:12px;box-shadow:0 4px 12px rgba(26,23,20,.03)}
       .nav-links.open .nav-cta{background:var(--rose);border-color:transparent;color:var(--white)!important}
@@ -555,8 +555,10 @@
       const hamburger = document.getElementById('hamburger');
       const isOpen = nav.classList.toggle('open');
       document.body.classList.toggle('nav-open', isOpen);
-      hamburger.classList.toggle('active', isOpen);
-      if (hamburger) hamburger.setAttribute('aria-expanded', String(isOpen));
+      if (hamburger) {
+        hamburger.classList.toggle('active', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      }
     }
     // Close mobile nav when a nav link is clicked
     document.addEventListener('click', (e)=>{

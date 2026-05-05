@@ -120,9 +120,9 @@
       width: 22px; height: 1.5px; background: var(--ink);
       transition: all 0.3s ease;
     }
-    .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(0, 6px); }
+    .nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .nav-hamburger.active span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(0, -6px); }
+    .nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
 
     /* ── HERO ── */
     .hero {
@@ -983,7 +983,7 @@
       .nav-logo { flex-direction: row; align-items: center; gap: 0.45rem; }
       .logo-main { font-size: 1.2rem; letter-spacing: 0.16em; }
       .logo-sub { font-size: 0.48rem; margin-top: 0; letter-spacing: 0.28em; }
-      .nav-links { display: none; transition: all 0.3s ease; opacity: 0; visibility: hidden; transform: translateY(-20px); pointer-events: none; }
+      .nav-links { display: none; transition: all 0.3s ease; transform: translateY(-20px); opacity: 0; pointer-events: none; }
       .nav-hamburger {
         display: flex; align-items: center; justify-content: center;
         width: 44px; height: 44px; border: 1px solid rgba(168, 94, 81, 0.16);
@@ -1001,7 +1001,7 @@
         box-shadow: 0 18px 40px rgba(26, 23, 20, 0.12);
         max-height: calc(100vh - 7rem);
         overflow-y: auto;
-        transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto;
+        transform: translateY(0); opacity: 1; pointer-events: auto;
       }
       .nav-links.open li { width: 100%; display: flex; }
       .nav-links.open a {
