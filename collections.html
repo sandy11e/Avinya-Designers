@@ -35,6 +35,8 @@
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .3s}
     .nav-links a:hover::after{width:100%}
     .nav-links a:hover{color:var(--rose)}
+    .nav-links a.active::after{width:100%}
+    .nav-links a.active{color:var(--rose)}
     .nav-cta{background:var(--rose);color:var(--white)!important;padding:.6rem 1.4rem;border-radius:2px}
     .nav-cta::after{display:none!important}
     .nav-cta:hover{background:var(--rose-dk)!important}
@@ -166,6 +168,7 @@
       .nav-links.open{visibility:visible;opacity:1;transform:translateY(0) scaleY(1);pointer-events:auto}
       .nav-links.open li{width:100%;display:flex}
       .nav-links.open a{width:100%;font-size:.95rem;padding:.9rem 1rem;min-height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.8);border:1px solid rgba(168,94,81,.10);border-radius:12px;box-shadow:0 4px 12px rgba(26,23,20,.03)}
+      .nav-links.open a.active:not(.nav-cta){background:rgba(200,120,106,.14);border-color:rgba(200,120,106,.24);color:var(--rose-dk)!important;box-shadow:0 8px 18px rgba(200,120,106,.12)}
       .nav-links.open .nav-cta{background:var(--rose);border-color:transparent;color:var(--white)!important}
       .page-hero{padding:5rem 1.5rem 3rem}
       .filter-bar{padding:1rem 1.5rem}
@@ -230,7 +233,7 @@
   <nav id="navbar">
     <a href="index.html" class="nav-logo nav-logo-mark"><img src="images/logo.png" alt="Avinya Designers logo" style="border-radius: 50%;"><span class="logo-main">AVINYA</span><span class="logo-sub">Designers</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html" class="active">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
   </nav>

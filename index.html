@@ -105,6 +105,8 @@
     }
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:hover { color: var(--rose); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--rose); }
 
     .nav-cta {
       background: var(--rose); color: var(--white) !important;
@@ -1003,6 +1005,12 @@
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(26, 23, 20, 0.03);
       }
+      .nav-links.open a.active:not(.nav-cta) {
+        background: rgba(200, 120, 106, 0.14);
+        border-color: rgba(200, 120, 106, 0.24);
+        color: var(--rose-dk) !important;
+        box-shadow: 0 8px 18px rgba(200, 120, 106, 0.12);
+      }
       .nav-links.open .nav-cta {
         background: var(--rose);
         border-color: transparent;
@@ -1250,7 +1258,7 @@
       <span class="logo-sub">Designers</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="collections.html">Collections</a></li>
       <li><a href="categories.html">Services</a></li>
