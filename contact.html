@@ -222,11 +222,13 @@
       .logo-main { font-size: 1.2rem; letter-spacing: 0.16em; }
       .logo-sub { font-size: 0.48rem; margin-top: 0; letter-spacing: 0.28em; }
       .nav-links { position: absolute; top: calc(100% + 0.75rem); left: 1rem; right: 1rem; display: flex; flex-direction: column; gap: 0.7rem; visibility: hidden; opacity: 0; transform: translateY(-12px) scaleY(0.95); pointer-events: none; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: top; z-index: 1100; background: rgba(248,244,239,0.98); align-items: stretch; justify-content: flex-start; padding: 0.9rem; border: 1px solid rgba(168,94,81,0.14); border-radius: 18px; box-shadow: 0 18px 40px rgba(26,23,20,0.12); max-height: calc(100vh - 7rem); overflow-y: auto; }
+      .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid rgba(168,94,81,0.16); border-radius: 999px; background: rgba(254,253,251,0.9); }
+      .nav-hamburger span { width: 18px; height: 1.5px; background: var(--rose-dk); }
       .nav-links.open { visibility: visible; opacity: 1; transform: translateY(0) scaleY(1); pointer-events: auto; }
       .nav-links.open li { width: 100%; display: flex; }
       .nav-links.open a { width: 100%; font-size: 0.95rem; padding: 0.9rem 1rem; min-height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.8); border: 1px solid rgba(168,94,81,0.10); border-radius: 12px; box-shadow: 0 4px 12px rgba(26,23,20,0.03); }
       .nav-links.open .nav-cta { background: var(--rose); border-color: transparent; color: var(--white) !important; }
-      .page-hero { padding: 5rem 1.5rem 3rem; min-height: 40vh; }
+      .page-hero { padding: 6.5rem 1.5rem 3rem; min-height: 40vh; }
       .page-hero-breadcrumb { display: none; }
       .quick-channels, .response-section { padding: 4rem 1.5rem; }
       .channels-grid { grid-template-columns: 1fr; }
@@ -258,7 +260,7 @@
       .logo-sub { font-size: 0.42rem; }
       .nav-hamburger { width: 42px; height: 42px; }
       .nav-hamburger span { width: 16px; }
-      .page-hero { padding: 4rem 1rem 2rem; min-height: auto; }
+      .page-hero { padding: 5.5rem 1rem 2rem; min-height: auto; }
       .quick-channels, .response-section { padding: 2.5rem 1rem !important; }
       .contact-body { padding: 2.5rem 1rem !important; gap: 1.5rem; }
       h1, h2 { font-size: 1.5rem; }
@@ -305,7 +307,7 @@
       <li><a href="reviews.html">Reviews</a></li>
       <li><a href="contact.html" class="nav-cta active">Contact</a></li>
     </ul>
-    <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+    <div class="nav-hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </nav>
@@ -327,18 +329,18 @@
   <!-- MARQUEE -->
   <div class="marquee-strip">
     <div class="marquee-inner">
-      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
-      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
-      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
-      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
-      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
-      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
-      <span>Bridal Couture</span><span><i class="fas fa-diamond"></i></span>
-      <span>Custom Stitching</span><span><i class="fas fa-diamond"></i></span>
-      <span>Festival Wear</span><span><i class="fas fa-diamond"></i></span>
-      <span>Luxury Minimal</span><span><i class="fas fa-diamond"></i></span>
-      <span>Traditional Fusion</span><span><i class="fas fa-diamond"></i></span>
-      <span>Premium Tailoring</span><span><i class="fas fa-diamond"></i></span>
+      <span>Blouse & Designer Blouse</span><span><i class="fas fa-diamond"></i></span>
+      <span>Salwar Kameez (Chudithar)</span><span><i class="fas fa-diamond"></i></span>
+      <span>Aari & Machine Embroidery</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Wears & Lehenga</span><span><i class="fas fa-diamond"></i></span>
+      <span>Ladies Suits, Kurtis & Sarees</span><span><i class="fas fa-diamond"></i></span>
+      <span>Saree Pre Pleating</span><span><i class="fas fa-diamond"></i></span>
+      <span>Running Materials</span><span><i class="fas fa-diamond"></i></span>
+      <span>Sarees & Salwars</span><span><i class="fas fa-diamond"></i></span>
+      <span>Blouse & Designer Blouse</span><span><i class="fas fa-diamond"></i></span>
+      <span>Salwar Kameez (Chudithar)</span><span><i class="fas fa-diamond"></i></span>
+      <span>Aari & Machine Embroidery</span><span><i class="fas fa-diamond"></i></span>
+      <span>Bridal Wears & Lehenga</span><span><i class="fas fa-diamond"></i></span>
     </div>
   </div>
 
@@ -374,8 +376,8 @@
       <a href="https://maps.app.goo.gl/kpHzpzoRgVrgXo4m7?g_st=aw" class="channel-card reveal reveal-delay-3" target="_blank">
         <div class="channel-icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
         <p class="channel-label">Visit Us</p>
-        <p class="channel-value">Our Studio</p>
-        <p class="channel-note">Get directions &amp; visit us</p>
+        <p class="channel-value">Avinya Designers</p>
+        <p class="channel-note">4/51B, Viswak complex First Floor, Opp Arun Silks Near Tamilnadu Theatre, Palladam Road, Tirupur - 641605.</p>
         <span class="channel-arrow">Get Directions <i class="fas fa-arrow-right" style="font-size:0.6rem"></i></span>
       </a>
     </div>
@@ -413,11 +415,14 @@
             <label>Design Category *</label>
             <select id="category">
               <option value="">Select a category</option>
-              <option>Bridal Wear</option>
-              <option>Custom Design</option>
-              <option>Festival Wear</option>
-              <option>Professional Wear</option>
-              <option>Alterations</option>
+              <option>Blouse & Designer Blouse</option>
+              <option>Salwar Kameez (Chudithar)</option>
+              <option>Aari & Machine Embroidery</option>
+              <option>Bridal Wears & Lehenga</option>
+              <option>Ladies Suits, Kurtis & Sarees</option>
+              <option>Saree Pre Pleating</option>
+              <option>Running Materials</option>
+              <option>Sarees & Salwars</option>
             </select>
           </div>
           <div class="form-field">
@@ -430,10 +435,7 @@
           <label>Design Details &amp; Vision *</label>
           <textarea id="message" placeholder="Describe your dream design, occasion, color preferences, timeline…"></textarea>
         </div>
-        <div class="checkbox-wrap">
-          <input type="checkbox" id="subscribe">
-          <label for="subscribe">Subscribe for latest collections and exclusive offers</label>
-        </div>
+        
         <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right" style="margin-left:0.5rem;font-size:0.65rem"></i></button>
       </form>
     </div>
@@ -451,7 +453,7 @@
           <div>
             <p class="info-label">Phone</p>
             <p class="info-value">+91 86753 37366</p>
-            <p class="info-note">Mon – Sat, 10AM – 6PM</p>
+            <p class="info-note">Mon – Sat, 10AM – 7PM</p>
           </div>
         </a>
         <a href="mailto:designersavinya@gmail.com" class="info-item">
@@ -482,16 +484,15 @@
           <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div>
             <p class="info-label">Location</p>
-            <p class="info-value">Visit Our Studio</p>
-            <p class="info-note">Get directions &amp; find us</p>
+            <p class="info-value">Avinya Designers</p>
+            <p class="info-note">4/51B, Viswak complex First Floor, Opp Arun Silks Near Tamilnadu Theatre, Palladam Road, Tirupur - 641605. </p>
           </div>
         </a>
       </div>
       <div class="hours-card">
         <p class="hours-title"><i class="fas fa-clock"></i> Business Hours</p>
-        <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">10:00 AM – 6:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM – 5:00 PM</span></div>
-        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time rose">By Appointment</span></div>
+        <div class="hours-row"><span class="hours-day">Monday – Saturday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time rose">Holiday</span></div>
         <div class="hours-row"><span class="hours-day">Public Holidays</span><span class="hours-time" style="color:rgba(248,244,239,0.3)">Closed</span></div>
       </div>
     </div>
@@ -570,11 +571,14 @@
       <div class="footer-col">
         <h5>Services</h5>
         <ul>
-          <li><a href="categories.html">Bridal Design</a></li>
-          <li><a href="categories.html">Custom Stitching</a></li>
-          <li><a href="categories.html">Traditional Wear</a></li>
-          <li><a href="categories.html">Luxury Minimal</a></li>
-          <li><a href="categories.html">Alterations</a></li>
+          <li><a href="categories.html">Blouse & Designer Blouse</a></li>
+          <li><a href="categories.html">Salwar Kameez (Chudithar)</a></li>
+          <li><a href="categories.html">Aari & Machine Embroidery</a></li>
+          <li><a href="categories.html">Bridal Wears & Lehenga</a></li>
+          <li><a href="categories.html">Ladies Suits, Kurtis & Sarees</a></li>
+          <li><a href="categories.html">Saree Pre Pleating</a></li>
+          <li><a href="categories.html">Running Materials</a></li>
+          <li><a href="categories.html">Sarees & Salwars</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -616,38 +620,6 @@
 
   <script>
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60));
-    function toggleNav() { 
-      const nav = document.getElementById('navLinks');
-      const hamburger = document.getElementById('hamburger');
-      const isOpen = nav.classList.toggle('open');
-      document.body.classList.toggle('nav-open', isOpen);
-      hamburger.classList.toggle('active', isOpen);
-      if (hamburger) hamburger.setAttribute('aria-expanded', String(isOpen));
-    }
-    document.addEventListener('click', (e) => {
-      const t = e.target;
-      if(t.closest && t.closest('.nav-links') && t.tagName === 'A'){
-        const nav = document.getElementById('navLinks');
-        const hamburger = document.getElementById('hamburger');
-        if(nav && nav.classList.contains('open')){ 
-          nav.classList.remove('open'); 
-          document.body.classList.remove('nav-open'); 
-          hamburger.classList.remove('active');
-          if (hamburger) hamburger.setAttribute('aria-expanded', 'false'); 
-        }
-      }
-    });
-    // Close mobile nav when clicking outside
-    document.addEventListener('click', (e) => {
-      const nav = document.getElementById('navLinks');
-      const hamburger = document.getElementById('hamburger');
-      if (nav && nav.classList.contains('open') && !hamburger.contains(e.target) && !nav.contains(e.target)) {
-        nav.classList.remove('open');
-        document.body.classList.remove('nav-open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
 
     const fabWrap = document.querySelector('.fab-wrap');
     if (fabWrap) {

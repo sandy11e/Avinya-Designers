@@ -303,8 +303,22 @@
       .story-accent{display:none} .story-award{top:1rem;left:1rem}
       .achievements,.timeline-sec,.team,.philosophy{padding:4rem 1.5rem}
       .ach-grid{grid-template-columns:1fr}
-      .timeline{grid-template-columns:40px 1fr}
-      .tl-left{display:none} .tl-right{padding-left:1.5rem}
+      .timeline{grid-template-columns:1fr;gap:1rem}
+      .timeline > .tl-center,
+      .timeline > .tl-empty{display:none}
+      .timeline > .tl-left,
+      .timeline > .tl-right{
+        display:block;
+        text-align:left;
+        padding:1.35rem 1.25rem 1.25rem;
+        margin:0;
+        background:rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.08);
+        border-left:3px solid var(--rose-lt);
+        border-radius:16px;
+      }
+      .tl-left, .tl-right{padding-left:1.25rem; padding-right:1.25rem}
+      .tl-year{margin-bottom:.5rem}
       .team-grid{grid-template-columns:1fr}
       .phil-grid{grid-template-columns:1fr}
       .cta-band{flex-direction:column;text-align:center;padding:3rem 1.5rem;gap:1.5rem}
@@ -422,7 +436,7 @@
       <div class="ach-card reveal"><div class="ach-icon"><i class="fas fa-star"></i></div><h3 class="ach-title">15+ Fashion Shows</h3><p class="ach-desc">Participated in national and international fashion shows, showcasing collections that blend heritage with modern design.</p></div>
       <div class="ach-card reveal reveal-delay-1"><div class="ach-icon"><i class="fas fa-trophy"></i></div><h3 class="ach-title">Best Emerging Designer</h3><p class="ach-desc">Awarded Best Emerging Designer in 2022, recognising exceptional talent and a distinctive design vision.</p></div>
       <div class="ach-card reveal reveal-delay-2"><div class="ach-icon"><i class="fas fa-users"></i></div><h3 class="ach-title">1000+ Happy Clients</h3><p class="ach-desc">Over a thousand satisfied clients nationwide, with a 98% satisfaction rate and countless repeat customers.</p></div>
-      <div class="ach-card reveal"><div class="ach-icon"><i class="fas fa-scissors"></i></div><h3 class="ach-title">10+ Years of Expertise</h3><p class="ach-desc">A decade of specialised design experience across bridal wear, traditional fusion, and luxury minimal aesthetics.</p></div>
+      <div class="ach-card reveal"><div class="ach-icon"><i class="fas fa-scissors"></i></div><h3 class="ach-title">10+ Years of Expertise</h3><p class="ach-desc">A decade of specialised design experience across blouse design, embroidery, bridal wear, and saree work.</p></div>
       <div class="ach-card reveal reveal-delay-1"><div class="ach-icon"><i class="fas fa-heart"></i></div><h3 class="ach-title">Traditional & Trendy Fusion</h3><p class="ach-desc">Expert in weaving cultural heritage into contemporary silhouettes — designs that honour the past while celebrating the now.</p></div>
       <div class="ach-card reveal reveal-delay-2"><div class="ach-icon"><i class="fas fa-bolt"></i></div><h3 class="ach-title">Quick Turnaround</h3><p class="ach-desc">Renowned for delivering exceptional quality within tight timelines — without ever compromising on the craft.</p></div>
     </div>
@@ -445,7 +459,7 @@
       <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-right reveal"><p class="tl-year">2015</p><h3 class="tl-title">First National Fashion Show</h3><p class="tl-desc">Featured at Mumbai Fashion Week with an exclusive bridal collection.</p></div>
       <!-- item 3 -->
-      <div class="tl-left reveal"><p class="tl-year">2018</p><h3 class="tl-title">Expanded Services</h3><p class="tl-desc">Introduced custom stitching, design consultation, and bridal trousseau packages.</p></div>
+      <div class="tl-left reveal"><p class="tl-year">2018</p><h3 class="tl-title">Expanded Services</h3><p class="tl-desc">Introduced blouse design, embroidery, and bridal trousseau packages.</p></div>
       <div class="tl-center"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-empty"></div>
       <!-- item 4 -->
@@ -537,7 +551,7 @@
         </div>
       </div>
       <div class="footer-col"><h5>Navigation</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="collections.html">Collections</a></li><li><a href="categories.html">Services</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Services</h5><ul><li><a href="categories.html">Bridal Design</a></li><li><a href="categories.html">Custom Stitching</a></li><li><a href="categories.html">Traditional Wear</a></li><li><a href="categories.html">Luxury Minimal</a></li><li><a href="categories.html">Alterations</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="categories.html">Blouse & Designer Blouse</a></li><li><a href="categories.html">Salwar Kameez (Chudithar)</a></li><li><a href="categories.html">Aari & Machine Embroidery</a></li><li><a href="categories.html">Bridal Wears & Lehenga</a></li><li><a href="categories.html">Ladies Suits, Kurtis & Sarees</a></li><li><a href="categories.html">Saree Pre Pleating</a></li><li><a href="categories.html">Running Materials</a></li><li><a href="categories.html">Sarees & Salwars</a></li></ul></div>
       <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+918675337366">+91 86753 37366</a></li><li><a href="mailto:designersavinya@gmail.com">designersavinya@gmail.com</a></li><li><a href="#">Mon–Sat, 10AM–6PM</a></li><li><a href="#">Sunday by Appointment</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Avinya Designers. All rights reserved.</span><span>Designed with care for discerning women everywhere.</span></div>
